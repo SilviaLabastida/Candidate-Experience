@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Generador de CV – Eaton</title>
+<style>
+:root {
+  /* ── Eaton Official Palette ── */
+  --blue:      #005EB8;   /* Eaton Blue – PANTONE 300 C  – primary actions, links    */
+  --blue-dark: #003865;   /* PANTONE 2955 C – headers, deep backgrounds              */
+  --blue-lt:   #71B2C9;   /* PANTONE 7458 C – highlights, active states              */
+  --teal:      #00B2A9;   /* PANTONE 326 C  – accents, success                       */
+  --yellow:    #FFC72C;   /* PANTONE 123 C  – primary accent / CTA highlight         */
+  --yellow2:   #F0B323;   /* PANTONE 7409 C – hover yellow                           */
+  --orange:    #ED8B00;   /* PANTONE 144 C  – warm accent                            */
+  --gray-dk:   #333F48;   /* PANTONE 432 C  – body text, dark UI                     */
+  --gray-md:   #5B6770;   /* PANTONE 431 C  – secondary text                        */
+  --gray-lt:   #98A4AE;   /* PANTONE 7543 C – borders, placeholder                  */
+  --green:     #4C8D2B;   /* PANTONE 363 C  – success states                         */
+  --white:     #FFFFFF;
+  --light:     #F4F6F9;   /* off-white background                                    */
+  --border:    #D8DDE2;
+
+  /* ── Aliases for readability ── */
+  --blue2:   #003865;
+  --blue3:   #005EB8;
+  --gray:    #5B6770;
+  --lgray:   #98A4AE;
+  --yellow2: #F0B323;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Univers','Open Sans',Arial,sans-serif;
+  background: var(--light);
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+/* HEADER */
+header {
+  background: var(--blue-dark);
+  padding: 13px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 50;
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+}
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-img { display:flex; align-items:center; background:#fff; border-radius:4px; padding:4px 10px; }
+.logo-sub { color: rgba(255,255,255,.55); font-size: 12px; line-height: 1.4; }
+.privacy-pill {
+  background: rgba(46,125,50,.25);
+  border: 1px solid rgba(46,125,50,.5);
+  color: #81c784;
+  font-size: 11px; font-weight: 700;
+  padding: 5px 10px; border-radius: 20px; white-space: nowrap;
+}
+
+/* PROGRESS */
+.progress-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px 10px;
+}
+.steps { display: flex; align-items: center; max-width: 500px; margin: 0 auto; }
+.step-dot { display: flex; flex-direction: column; align-items: center; flex: none; }
+.step-circle {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 13px; color: #fff;
+  background: #c0c8d8;
+  transition: background .3s, box-shadow .3s;
+}
+.step-dot.active .step-circle { background: var(--blue); box-shadow: 0 0 0 4px rgba(0,94,184,.2); }
+.step-dot.done   .step-circle { background: var(--teal); }
+.step-lbl {
+  font-size: 10px; font-weight: 700; color: #b0b8cc;
+  margin-top: 5px; text-align: center; max-width: 55px; line-height: 1.2;
+}
+.step-dot.active .step-lbl { color: var(--blue); }
+.step-dot.done   .step-lbl { color: var(--teal); }
+.step-line { flex: 1; height: 2px; background: #d8dce8; margin-bottom: 18px; transition: background .3s; }
+.step-line.done { background: var(--teal); }
+
+/* MAIN */
+main { max-width: 640px; margin: 0 auto; padding: 20px 14px 80px; }
+.panel { display: none; animation: fadeUp .3s ease; }
+.panel.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* CARD */
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 2px 14px rgba(0,0,0,.07);
+  padding: 24px 20px;
+  margin-bottom: 16px;
+  border-top: 4px solid var(--blue);
+}
+.card-title {
+  font-family: 'Univers','Open Sans',Arial,sans-serif;
+  font-size: 19px; font-weight: 800;
+  color: var(--blue-dark); letter-spacing: .8px; text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.card-hint {
+  font-size: 13px; color: var(--gray); line-height: 1.55;
+  margin-bottom: 20px;
+  background: #f0f4f9;
+  border-left: 3px solid var(--blue-lt);
+  padding: 9px 13px; border-radius: 0 6px 6px 0;
+}
+.card-hint strong { color: var(--blue); }
+
+/* FORM */
+.fgroup { margin-bottom: 18px; }
+.fgroup label {
+  display: block;
+  font-size: 12px; font-weight: 700; color: var(--gray);
+  letter-spacing: .6px; text-transform: uppercase; margin-bottom: 7px;
+}
+.fgroup label .req { color: #c0392b; margin-left: 2px; }
+.fgroup label .tip {
+  display: block; font-weight: 400; font-size: 11.5px;
+  text-transform: none; letter-spacing: 0; color: #999; margin-top: 2px;
+}
+input[type=text], input[type=tel], input[type=email],
+input[type=date], textarea, select {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: 'Univers','Open Sans',Arial,sans-serif;
+  font-size: 15px; color: #1a1a2e;
+  background: var(--white);
+  transition: border-color .2s, box-shadow .2s;
+  outline: none; -webkit-appearance: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0,94,184,.12);
+}
+textarea { resize: vertical; min-height: 72px; }
+input::placeholder, textarea::placeholder { color: #b8bbd0; font-size: 14px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:420px){ .row2 { grid-template-columns: 1fr; } }
+
+/* CHIP SKILLS */
+.chips-wrap {
+  border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 10px; min-height: 50px; background: var(--white);
+  display: flex; flex-wrap: wrap; gap: 7px; align-items: center;
+  cursor: text; transition: border-color .2s, box-shadow .2s;
+}
+.chips-wrap:focus-within {
+  border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,94,184,.12);
+}
+.chip {
+  background: rgba(0,94,184,.1); color: var(--blue);
+  border: 1px solid rgba(0,94,184,.28);
+  border-radius: 20px; padding: 4px 11px;
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; gap: 6px;
+  animation: popIn .18s ease;
+}
+@keyframes popIn { from { transform: scale(.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.chip-x { cursor: pointer; font-size: 16px; opacity: .55; line-height: 1; }
+.chip-x:hover { opacity: 1; }
+.chip-input {
+  border: none !important; outline: none !important; box-shadow: none !important;
+  min-width: 100px; flex: 1; font-size: 14px; padding: 4px;
+  background: transparent; font-family: 'Univers','Open Sans',Arial,sans-serif;
+}
+.chips-hint { font-size: 11px; color: #999; margin-top: 5px; }
+.presets { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.preset-btn {
+  background: var(--light); border: 1.5px solid var(--border); color: var(--gray);
+  border-radius: 20px; padding: 5px 13px; font-size: 12.5px; font-weight: 600;
+  cursor: pointer; font-family: 'Univers','Open Sans',Arial,sans-serif; transition: all .18s;
+}
+.preset-btn:hover {
+  background: rgba(0,51,102,.08); border-color: rgba(0,51,102,.3); color: var(--blue);
+}
+
+/* DYNAMIC BLOCKS */
+.dyn-block {
+  border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 16px; margin-bottom: 12px; background: var(--light);
+  animation: fadeUp .22s ease;
+}
+.dyn-head {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
+}
+.dyn-label { font-size: 12px; font-weight: 800; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; }
+.btn-del {
+  background: none; border: 1.5px solid #e8c0c4; color: #c04050;
+  border-radius: 5px; padding: 4px 11px; font-size: 12px; font-weight: 700;
+  cursor: pointer; font-family: 'Univers','Open Sans',Arial,sans-serif; transition: background .18s;
+}
+.btn-del:hover { background: #fff0f2; }
+.dyn-actions { display:flex; align-items:center; gap:6px; }
+.btn-move { background:#eef3fb; border:1.5px solid var(--border); color:var(--blue); width:30px; height:30px; border-radius:6px; font-size:15px; font-weight:800; cursor:pointer; line-height:1; padding:0; font-family:'Univers','Open Sans',Arial,sans-serif; }
+.btn-move:hover:not(:disabled){ background:#dde9f8; }
+.btn-move:disabled{ opacity:.32; cursor:not-allowed; }
+.btn-add {
+  width: 100%; border: 2px dashed var(--border); background: none; color: var(--gray);
+  border-radius: 8px; padding: 13px;
+  font-size: 14px; font-weight: 700; font-family: 'Univers','Open Sans',Arial,sans-serif;
+  cursor: pointer; transition: all .18s;
+  display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px;
+}
+.btn-add:hover { border-color: var(--blue); color: var(--blue); background: rgba(0,51,102,.04); }
+
+/* NAV BUTTONS */
+.nav {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 22px; gap: 10px;
+}
+.btn-back {
+  background: var(--white); border: 2px solid var(--border); color: var(--gray);
+  border-radius: 8px; padding: 13px 24px;
+  font-size: 15px; font-weight: 700; font-family: 'Univers','Open Sans',Arial,sans-serif;
+  cursor: pointer; transition: all .2s;
+}
+.btn-back:hover { border-color: var(--gray); }
+.btn-next {
+  background: var(--blue); border: none; color: var(--white);
+  border-radius: 8px; padding: 14px 36px;
+  font-size: 16px; font-weight: 800; font-family: 'Univers','Open Sans',Arial,sans-serif;
+  cursor: pointer; letter-spacing: .3px;
+  box-shadow: 0 4px 16px rgba(0,94,184,.3);
+  transition: all .2s; flex: 1; max-width: 260px;
+}
+.btn-next:hover { background: var(--blue-dark); transform: translateY(-1px); }
+.btn-dl {
+  background: var(--blue-dark); border: none; color: var(--white);
+  border-radius: 8px; padding: 15px 28px;
+  font-size: 16px; font-weight: 800; font-family: 'Univers','Open Sans',Arial,sans-serif;
+  cursor: pointer; box-shadow: 0 4px 16px rgba(0,56,101,.3);
+  transition: all .2s; display: flex; align-items: center; gap: 10px;
+}
+.btn-dl:hover { background: var(--blue-dark); transform: translateY(-1px); }
+.btn-new {
+  background: var(--white); border: 2px solid var(--blue); color: var(--blue);
+  border-radius: 8px; padding: 14px 22px;
+  font-size: 15px; font-weight: 800; font-family: 'Univers','Open Sans',Arial,sans-serif;
+  cursor: pointer; transition: all .2s;
+}
+.btn-new:hover { background: rgba(0,51,102,.06); }
+
+/* SUCCESS */
+.success-badge {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+  color: var(--white); border-radius: 10px;
+  padding: 18px 22px; margin-bottom: 18px;
+  display: flex; align-items: center; gap: 14px;
+  font-weight: 700; font-size: 15px; line-height: 1.4;
+}
+.success-icon { font-size: 32px; flex-shrink: 0; }
+
+/* ════════════════════════════════
+   CV TEMPLATE
+════════════════════════════════ */
+#cv-wrap {
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 2px 18px rgba(0,0,0,.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* Top band: dark blue */
+.cv-top {
+  background: var(--blue-dark);
+  padding: 28px 32px 22px;
+}
+.cv-top-inner {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+}
+.cv-name {
+  font-family: 'Univers','Open Sans',Arial,sans-serif;
+  font-size: 30px; font-weight: 800; color: var(--white);
+  text-transform: uppercase; letter-spacing: 1px; line-height: 1;
+}
+.cv-pos {
+  font-size: 12px; color: rgba(255,255,255,.6);
+  letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; font-weight: 400;
+}
+/* Yellow accent badge */
+.cv-logo-img { flex-shrink:0; background:#fff; border-radius:3px; padding:4px 10px; display:flex; align-items:center; }
+.cv-logo-sm {
+  background: var(--yellow);
+  color: var(--blue-dark);
+  font-family: 'Univers','Open Sans',Arial,sans-serif;
+  font-weight: 800; font-size: 15px; letter-spacing: 2px;
+  padding: 5px 13px; border-radius: 3px; flex-shrink: 0;
+}
+
+/* Yellow contact bar */
+.cv-bar {
+  background: var(--blue);
+  padding: 9px 32px;
+  display: flex; flex-wrap: wrap; gap: 18px;
+}
+.cv-bar-item {
+  color: var(--white);
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; gap: 5px;
+}
+
+/* Body layout */
+.cv-body { display: grid; grid-template-columns: 1fr 200px; }
+@media(max-width:480px){ .cv-body { grid-template-columns: 1fr; } }
+.cv-main { padding: 24px 28px; }
+.cv-side { background: #EEF3F8; border-left: 2px solid var(--yellow); padding: 24px 18px; }
+
+/* Section headings */
+.cv-sec { margin-bottom: 20px; }
+.cv-sec-title {
+  font-family: 'Univers','Open Sans',Arial,sans-serif;
+  font-size: 12px; font-weight: 800; color: var(--blue-dark);
+  letter-spacing: 2px; text-transform: uppercase;
+  border-bottom: 2px solid var(--yellow);
+  padding-bottom: 4px; margin-bottom: 12px;
+}
+
+/* Experience items */
+.cv-item { margin-bottom: 14px; }
+.cv-item-head {
+  display: flex; justify-content: space-between;
+  align-items: baseline; gap: 8px; flex-wrap: wrap;
+}
+.cv-item-co { font-weight: 800; font-size: 13.5px; color: #1a1a2e; }
+.cv-item-dates {
+  font-size: 11px; font-weight: 700; color: var(--gray);
+  background: #e8edf5; padding: 2px 7px; border-radius: 3px; white-space: nowrap;
+}
+.cv-item-role { font-size: 12.5px; color: var(--blue); font-weight: 700; margin: 2px 0 5px; }
+.cv-item-desc { font-size: 12px; color: var(--gray); line-height: 1.6; }
+.cv-summary { font-size: 12.5px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+
+/* Skill tags: blue */
+.cv-skill {
+  display: inline-block;
+  background: rgba(0,94,184,.08); color: var(--blue-dark);
+  border: 1px solid rgba(0,94,184,.22);
+  border-radius: 20px; padding: 3px 10px;
+  font-size: 11.5px; font-weight: 700; margin: 2px 2px;
+}
+
+/* Footer band (ancla la parte inferior de la hoja) */
+.cv-footer {
+  background: var(--blue-dark);
+  padding: 11px 32px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; flex-wrap: wrap;
+}
+.cv-footer-name {
+  font-family: 'Univers','Open Sans',Arial,sans-serif;
+  font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--white); font-size: 12px;
+}
+.cv-footer-meta {
+  color: rgba(255,255,255,.6); font-size: 10.5px;
+  letter-spacing: .8px; text-transform: uppercase;
+}
+
+/* Sidebar */
+.cv-side-sec { margin-bottom: 18px; }
+.cv-side-title {
+  font-size: 10.5px; font-weight: 800; color: var(--gray);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  border-bottom: 1px solid rgba(0,94,184,.2); padding-bottom: 4px; margin-bottom: 8px;
+}
+.cv-side-item { font-size: 12px; color: #1a1a2e; padding: 4px 0; line-height: 1.45; }
+.cv-side-item strong { display: block; font-weight: 800; }
+.cv-side-item span { color: var(--gray); font-size: 11px; }
+
+/* PRINT — CV ocupa toda la hoja Carta como un currículum profesional */
+@media print {
+  @page { size: Letter; margin: 0.4in; }
+
+  /* Ocultar todo lo que es interfaz, no parte del CV */
+  header, .progress-bar, .success-badge, #dl-section,
+  .card-title, .card-hint, .nav { display: none !important; }
+
+  html, body {
+    background: #fff !important;
+    margin: 0 !important; padding: 0 !important;
+  }
+  main { padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
+
+  /* Mostrar solo el panel final con el CV */
+  .panel { display: none !important; }
+  #panel5 { display: block !important; }
+
+  #cv-wrap {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* El CV se estira para llenar el alto completo de la hoja */
+  #cv-preview {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 9.6in !important;
+    width: 100% !important;
+  }
+
+  /* Bandas de color a sangre completa (borde a borde) */
+  .cv-top { padding: 0.34in 0.42in 0.28in !important; }
+  .cv-bar { padding: 0.12in 0.42in !important; gap: 0.28in !important; }
+
+  /* La zona de contenido crece y empuja la barra lateral a todo lo alto */
+  .cv-body {
+    flex: 1 1 auto !important;
+    grid-template-columns: 1fr 2.3in !important;
+    align-items: stretch !important;
+  }
+  .cv-main { padding: 0.36in 0.42in !important; }
+  .cv-side { padding: 0.36in 0.3in !important; height: 100% !important; }
+  .cv-footer { padding: 0.14in 0.42in !important; }
+
+  /* Forzar la impresión de los colores de fondo en todos los navegadores */
+  #cv-preview, .cv-top, .cv-bar, .cv-side, .cv-footer,
+  .cv-skill, .cv-item-dates, .cv-sec-title, .cv-side-title {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Tipografía un poco mayor para que lea como documento de página completa */
+  .cv-name      { font-size: 33px !important; }
+  .cv-pos       { font-size: 13px !important; }
+  .cv-sec-title { font-size: 13px !important; }
+  .cv-summary, .cv-item-desc { font-size: 12.5px !important; line-height: 1.65 !important; }
+  .cv-item-co   { font-size: 14px !important; }
+  .cv-skill     { font-size: 12px !important; }
+  .cv-sec       { margin-bottom: 16px !important; }
+
+  /* Evitar cortes feos entre páginas (solo ítems individuales) */
+  .cv-item, .cv-side-item { break-inside: avoid; }
+}
+
+/* ── GUIDED QUESTIONS ── */
+.guided-box {
+  background: #EEF3F8;
+  border: 1.5px solid rgba(0,94,184,.2);
+  border-radius: 10px;
+  padding: 18px 16px;
+  margin-top: 4px;
+  margin-bottom: 14px;
+}
+.guided-title {
+  font-size: 13px; font-weight: 800; color: var(--blue-dark);
+  margin-bottom: 16px; letter-spacing: .2px;
+}
+.example-chips {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;
+}
+.ex-chip {
+  background: #fff; border: 1.5px solid var(--gray-lt);
+  color: var(--blue-dark); border-radius: 20px;
+  padding: 4px 12px; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all .18s;
+  font-family: 'Univers','Open Sans',Arial,sans-serif;
+}
+.ex-chip:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+.ex-chip:active { transform: scale(.95); }
+
+/* ── PREVIEW BOX ── */
+.preview-box {
+  background: #fff;
+  border: 2px solid var(--blue-lt);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-top: 4px;
+}
+.preview-label {
+  font-size: 11px; font-weight: 800; color: var(--blue-lt);
+  letter-spacing: .5px; text-transform: uppercase; margin-bottom: 8px;
+}
+.preview-text {
+  font-size: 13px; color: #333; line-height: 1.7;
+}
+
+/* ── REQUIRED ERROR ── */
+.field-error {
+  border-color: #e53935 !important;
+  box-shadow: 0 0 0 3px rgba(229,57,53,.12) !important;
+}
+.error-msg {
+  font-size: 11.5px; color: #e53935; font-weight: 700;
+  margin-top: 4px; display: none;
+}
+.error-msg.show { display: block; }
+
+/* ── DEPT SELECTOR ── */
+.dept-select {
+  margin-bottom: 0;
+  border-color: var(--blue);
+  font-weight: 600;
+  color: var(--blue-dark);
+  background: #EEF3F8;
+}
+
+/* ── GUIDED QUESTIONS ── */
+.guided-box {
+  background: #EEF3F8;
+  border: 1.5px solid rgba(0,94,184,.2);
+  border-radius: 10px;
+  padding: 18px 16px;
+  margin-top: 4px;
+  margin-bottom: 14px;
+}
+.guided-title {
+  font-size: 13px; font-weight: 800; color: var(--blue-dark);
+  margin-bottom: 16px; letter-spacing: .2px;
+}
+.example-chips {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;
+}
+.ex-chip {
+  background: #fff; border: 1.5px solid var(--gray-lt);
+  color: var(--blue-dark); border-radius: 20px;
+  padding: 4px 12px; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all .18s;
+  font-family: 'Univers','Open Sans',Arial,sans-serif;
+  user-select: none;
+}
+.ex-chip:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+.ex-chip:active { transform: scale(.95); }
+.ex-chip.used { background: rgba(0,94,184,.12); color: var(--blue); border-color: var(--blue); opacity:.7; }
+
+/* ── PREVIEW BOX ── */
+.preview-box {
+  background: #fff;
+  border: 2px solid var(--blue-lt);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-top: 4px;
+}
+.preview-label {
+  font-size: 11px; font-weight: 800; color: var(--blue-lt);
+  letter-spacing: .5px; text-transform: uppercase; margin-bottom: 8px;
+}
+.preview-text { font-size: 13px; color: #333; line-height: 1.7; }
+
+/* ── FIELD ERRORS ── */
+.field-error { border-color: #e53935 !important; box-shadow: 0 0 0 3px rgba(229,57,53,.12) !important; }
+.error-msg { font-size: 11.5px; color: #e53935; font-weight: 700; margin-top: 4px; display: none; }
+.error-msg.show { display: block; }
+
+.cv-pais {
+  font-size: 11px; color: rgba(255,255,255,.5);
+  letter-spacing: 1px; margin-top: 4px; font-weight: 400;
+}
+
+.skill-dept-wrap {
+  margin-bottom: 4px;
+}
+.skill-dept-hint {
+  font-size: 11px; color: #999; margin-top: 5px;
+}
+.preset-sel {
+  background: rgba(0,94,184,.12) !important;
+  border-color: var(--blue) !important;
+  color: var(--blue) !important;
+}
+
+/* ── EATON PALETTE FINISHING TOUCHES ── */
+
+/* Card top accent: alternating blue shades for visual interest */
+.card { border-top-color: var(--blue); }
+
+/* Guided box label uses blue-lt accent */
+.guided-title { border-left: 3px solid var(--blue-lt); padding-left: 8px; }
+
+/* Add button: teal on hover for variety */
+.btn-add:hover { border-color: var(--blue); color: var(--blue); background: rgba(0,94,184,.04); }
+
+/* Phone code pill */
+#f_tel_code { 
+  background: var(--blue-dark) !important; 
+  color: var(--white) !important;
+  border-color: var(--blue-dark) !important;
+  border-radius: 8px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* Select elements: blue accent on focus */
+select:focus { border-color: var(--blue) !important; box-shadow: 0 0 0 3px rgba(0,94,184,.12) !important; }
+
+/* Step line done: use teal */
+.step-line.done { background: var(--teal); }
+
+/* Progress bar step done dot: teal */
+.step-dot.done .step-circle { background: var(--teal); }
+.step-dot.done .step-lbl { color: var(--teal); }
+
+/* CV sidebar accent: yellow left border already set; add yellow to section titles */
+.cv-side-title { color: var(--blue-dark); }
+
+/* CV contact bar: use blue with white text (already done) */
+
+/* CV name area gradient */
+.cv-top { 
+  background: linear-gradient(135deg, var(--blue-dark) 0%, #004a8f 100%);
+}
+
+/* Dyn block: subtle left accent */
+.dyn-block { border-left: 3px solid var(--blue-lt); }
+
+/* Error state: use Eaton red */
+.field-error { border-color: #D22730 !important; box-shadow: 0 0 0 3px rgba(210,39,48,.12) !important; }
+.error-msg { color: #D22730; }
+
+/* Success badge: Eaton dark blue gradient */
+.success-badge { background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%); }
+
+/* Preview label: blue-lt */
+.preview-label { color: var(--blue); }
+
+/* btn-new border and color */
+.btn-new { border-color: var(--blue); color: var(--blue); }
+.btn-new:hover { background: rgba(0,94,184,.06); }
+
+
+/* ── EATON LOGO BADGES ── */
+
+.cv-logo-badge {
+  background: var(--yellow);
+  color: var(--blue-dark);
+  font-family: 'Univers','Open Sans',Arial,sans-serif;
+  font-weight: 800; font-size: 15px; letter-spacing: 3px;
+  padding: 5px 13px; border-radius: 3px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.header-logo {
+  height: 36px;
+  display: block;
+  background: var(--white);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* ── INTERRUPTOR MARCA BLANCA ── */
+.logo-toggle {
+  background: #EEF3F8;
+  border: 1.5px solid rgba(0,94,184,.2);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.switch-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  cursor: pointer; user-select: none;
+}
+.switch-row input { position: absolute; opacity: 0; width: 0; height: 0; }
+.switch {
+  position: relative; flex-shrink: 0;
+  width: 46px; height: 26px; margin-top: 1px;
+  background: var(--gray-lt); border-radius: 20px;
+  transition: background .2s;
+}
+.switch::after {
+  content: ''; position: absolute; top: 3px; left: 3px;
+  width: 20px; height: 20px; background: #fff; border-radius: 50%;
+  transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.switch-row input:checked + .switch { background: var(--blue); }
+.switch-row input:checked + .switch::after { transform: translateX(20px); }
+.switch-row input:focus-visible + .switch { box-shadow: 0 0 0 3px rgba(0,94,184,.25); }
+.switch-text {
+  font-size: 14px; font-weight: 700; color: var(--blue-dark); line-height: 1.4;
+}
+.switch-tip {
+  display: block; font-weight: 400; font-size: 12px;
+  color: var(--gray); margin-top: 3px;
+}
+</style>
+</head>
+<body>
+
+<img id="eaton-logo-src" src="data:image/jpeg;base64,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" alt="" style="display:none">
+<header>
+  <div class="logo">
+    <img src="data:image/jpeg;base64,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" alt="Eaton" class="header-logo">
+    <div class="logo-sub">Generador de CV</div>
+  </div>
+  <div class="privacy-pill">Sin almacenamiento de datos</div>
+</header>
+
+<div class="progress-bar">
+  <div class="steps">
+    <div class="step-dot active" id="sd1"><div class="step-circle">1</div><div class="step-lbl">¿Quién eres?</div></div>
+    <div class="step-line" id="sl1"></div>
+    <div class="step-dot" id="sd2"><div class="step-circle">2</div><div class="step-lbl">Trabajos</div></div>
+    <div class="step-line" id="sl2"></div>
+    <div class="step-dot" id="sd3"><div class="step-circle">3</div><div class="step-lbl">Estudios</div></div>
+    <div class="step-line" id="sl3"></div>
+    <div class="step-dot" id="sd4"><div class="step-circle">4</div><div class="step-lbl">Habilidades</div></div>
+    <div class="step-line" id="sl4"></div>
+    <div class="step-dot" id="sd5"><div class="step-circle">✓</div><div class="step-lbl">¡Listo!</div></div>
+  </div>
+</div>
+
+<main>
+
+<!-- PANEL 1: DATOS PERSONALES -->
+<div class="panel active" id="panel1">
+  <div class="card">
+    <div class="card-title">¿Cómo te llamas y cómo te contactamos?</div>
+    <div class="card-hint">Solo llena lo que tengas. <strong>Nada se guarda en internet</strong> — toda tu información se queda en este teléfono o computadora.</div>
+    <div class="row2">
+      <div class="fgroup">
+        <label>Nombre(s)<span class="req">*</span></label>
+        <input type="text" id="f_nombre" placeholder="Ej. Juan Carlos" autocomplete="given-name">
+      </div>
+      <div class="fgroup">
+        <label>Apellido(s)<span class="req">*</span></label>
+        <input type="text" id="f_apellido" placeholder="Ej. Ramírez Torres" autocomplete="family-name">
+      </div>
+    </div>
+    <div class="fgroup">
+      <label>¿Para qué puesto aplicas?
+        <span class="tip">Si no sabes el nombre exacto, escribe algo general como "Operador" o "Técnico de Mantenimiento"</span>
+      </label>
+      <input type="text" id="f_puesto" placeholder="Ej. Operador de Producción, Técnico de Mantenimiento, Mecánico Industrial…">
+    </div>
+    <div class="fgroup">
+      <label>País <span class="req">*</span></label>
+      <select id="f_pais" onchange="onPaisChange()">
+        <option value="rd">República Dominicana</option>
+        <option value="mx">México</option>
+        <option value="pr">Puerto Rico</option>
+      </select>
+    </div>
+
+    <div class="row2">
+      <div class="fgroup">
+        <label>Teléfono <span class="req">*</span>
+          <span class="tip">El número donde te puedan llamar</span>
+        </label>
+        <div style="display:flex;gap:8px;align-items:stretch">
+          <div id="f_tel_code" style="background:#f0f5fb;border:1.5px solid var(--border);border-radius:8px;padding:12px 10px;font-weight:800;color:var(--blue);font-size:15px;white-space:nowrap;display:flex;align-items:center">+1</div>
+          <input type="tel" id="f_tel" placeholder="809-555-1234" autocomplete="tel" style="flex:1;min-width:0">
+        </div>
+      </div>
+      <div class="fgroup">
+        <label>Ciudad
+          <span class="tip">Donde vives actualmente</span>
+        </label>
+        <input type="text" id="f_ciudad" placeholder="Ej. Santiago, Santo Domingo…" autocomplete="address-level2" list="ciudades-list">
+      </div>
+    </div>
+    <div class="fgroup">
+      <label>Correo electrónico
+        <span class="tip">Si tienes, si no déjalo en blanco</span>
+      </label>
+      <input type="email" id="f_email" placeholder="tucorreo@gmail.com" autocomplete="email">
+    </div>
+    <div class="fgroup">
+      <label>Cuéntanos algo de ti (opcional)
+        <span class="tip">¿Cuántos años llevas en manufactura o mantenimiento? ¿Qué haces bien? No tiene que ser perfecto, escribe con tus palabras.</span>
+      </label>
+      <textarea id="f_resumen" placeholder="Ej: Tengo 8 años trabajando en zonas francas de manufactura. Soy responsable y puntual. He trabajado en líneas de ensamble y en mantenimiento preventivo de maquinaria." rows="4"></textarea>
+    </div>
+  </div>
+  <div class="nav">
+    <div></div>
+    <button class="btn-next" onclick="goTo(2)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- PANEL 2: EXPERIENCIA -->
+<div class="panel" id="panel2">
+  <div class="card">
+    <div class="card-title">¿Dónde has trabajado?</div>
+    <div class="card-hint">Agrega tus trabajos anteriores, empezando por el <strong>más reciente</strong>. Incluye zonas francas, empresas privadas o cualquier lugar donde hayas trabajado. Si es tu primer empleo puedes saltar esta parte.</div>
+    <div id="exp-list"></div>
+    <button class="btn-add" onclick="addExp()">+ Agregar trabajo</button>
+  </div>
+  <div class="nav">
+    <button class="btn-back" onclick="goTo(1)">← Atrás</button>
+    <button class="btn-next" onclick="if(validateExps()) goTo(3)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- PANEL 3: EDUCACIÓN -->
+<div class="panel" id="panel3">
+  <div class="card">
+    <div class="card-title">¿Hasta dónde estudiaste?</div>
+    <div class="card-hint">Agrega tu nivel más alto de estudios. Cursos del <strong>INFOTEP</strong>, politécnicos o certificaciones de empresa también cuentan.</div>
+    <div id="edu-list"></div>
+    <button class="btn-add" onclick="addEdu()">+ Agregar estudios</button>
+  </div>
+  <div class="nav">
+    <button class="btn-back" onclick="goTo(2)">← Atrás</button>
+    <button class="btn-next" onclick="goTo(4)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- PANEL 4: HABILIDADES -->
+<div class="panel" id="panel4">
+  <div class="card">
+    <div class="card-title">¿En qué eres bueno?</div>
+    <div class="card-hint">Toca las etiquetas de abajo para agregar habilidades rápido, o escribe las tuyas y presiona <strong>Enter</strong>. Agrega todo lo que sepas, aunque te parezca obvio.</div>
+
+    <div class="fgroup">
+      <label>Habilidades técnicas</label>
+
+      <div class="skill-dept-wrap">
+        <select class="dept-select" id="skill_dept" onchange="renderSkillChips()">
+          <option value="">— Elige tu área para ver habilidades sugeridas —</option>
+          <option value="manufactura">Manufactura / Producción</option>
+          <option value="mantenimiento">Mantenimiento</option>
+          <option value="calidad">Calidad</option>
+          <option value="rrhh">Recursos Humanos</option>
+          <option value="supply">Supply Chain / Almacén</option>
+          <option value="operaciones">Operaciones</option>
+          <option value="ingenieria">Ingeniería</option>
+        </select>
+        <div class="skill-dept-hint">También puedes agregar habilidades de varias áreas si aplica</div>
+      </div>
+
+      <div class="presets" id="skill-presets" style="margin-top:10px"></div>
+
+      <div class="chips-wrap" id="skills-wrap" onclick="document.getElementById('skills-input').focus()" style="margin-top:10px">
+        <input class="chip-input" id="skills-input" type="text" placeholder="O escribe una habilidad y presiona Enter…" onkeydown="chipKey(event,'skills')">
+      </div>
+      <div class="chips-hint">Presiona Enter o coma ( , ) para agregar habilidades personalizadas</div>
+    </div>
+
+    <div class="fgroup" style="margin-top:24px">
+      <label>Habilidades personales</label>
+      <div class="chips-wrap" id="soft-wrap" onclick="document.getElementById('soft-input').focus()">
+        <input class="chip-input" id="soft-input" type="text" placeholder="Escribe y presiona Enter…" onkeydown="chipKey(event,'soft')">
+      </div>
+      <div class="presets" style="margin-top:10px">
+        <button class="preset-btn" onclick="addPreset('soft','Trabajo en equipo')">Trabajo en equipo</button>
+        <button class="preset-btn" onclick="addPreset('soft','Puntualidad')">Puntualidad</button>
+        <button class="preset-btn" onclick="addPreset('soft','Responsabilidad')">Responsabilidad</button>
+        <button class="preset-btn" onclick="addPreset('soft','Aprendizaje rápido')">Aprendizaje rápido</button>
+        <button class="preset-btn" onclick="addPreset('soft','Proactivo')">Proactivo</button>
+        <button class="preset-btn" onclick="addPreset('soft','Liderazgo')">Liderazgo</button>
+        <button class="preset-btn" onclick="addPreset('soft','Inglés básico')">Inglés básico</button>
+        <button class="preset-btn" onclick="addPreset('soft','Inglés intermedio')">Inglés intermedio</button>
+        <button class="preset-btn" onclick="addPreset('soft','Disponibilidad de cambio de turno')">Cambio de turno</button>
+        <button class="preset-btn" onclick="addPreset('soft','Disponibilidad para horas extras')">Horas extras</button>
+      </div>
+    </div>
+
+    <div class="fgroup" style="margin-top:22px">
+      <label>Certificaciones o cursos (opcional)
+        <span class="tip">Ej: Curso de seguridad eléctrica, Certificación ISO, Operador de grúa, etc.</span>
+      </label>
+      <textarea id="f_certs" placeholder="Ej: Curso INFOTEP – Electricidad Industrial
+Certificación de Seguridad Industrial
+Operador de Montacargas" rows="3"></textarea>
+    </div>
+  </div>
+  <div class="nav">
+    <button class="btn-back" onclick="goTo(3)">← Atrás</button>
+    <button class="btn-next" onclick="buildAndShow()">Ver mi CV →</button>
+  </div>
+</div>
+
+<!-- PANEL 5: RESULTADO -->
+<div class="panel" id="panel5">
+  <div class="success-badge">
+    <div class="success-icon"></div>
+    <div>¡Tu CV está listo!<br><span style="font-weight:400;font-size:13px">Descárgalo como PDF o imprímelo desde aquí.</span></div>
+  </div>
+
+  <div id="cv-wrap"></div>
+
+  <div id="dl-section">
+    <div class="logo-toggle">
+      <label class="switch-row" for="chk_logo">
+        <input type="checkbox" id="chk_logo" checked onchange="toggleLogo()">
+        <span class="switch" aria-hidden="true"></span>
+        <span class="switch-text">
+          Mostrar el logo de Eaton en mi CV
+          <span class="switch-tip">Desactívalo si quieres tu CV sin marca (versión "marca blanca").</span>
+        </span>
+      </label>
+    </div>
+    <div class="nav" style="flex-wrap:wrap;gap:12px;">
+      <button class="btn-new" onclick="goTo(1)">Editar</button>
+      <button class="btn-dl" onclick="window.print()">Imprimir / Guardar PDF</button>
+    </div>
+    <p style="font-size:12px;color:#999;text-align:center;margin-top:14px;line-height:1.7">
+      Para guardar como PDF: presiona <strong>Imprimir</strong> → elige <strong>"Guardar como PDF"</strong> como destino.<br>
+      En celular: toca el ícono de compartir → "Imprimir".
+    </p>
+  </div>
+</div>
+
+</main>
+
+<script>
+const LOGO_IMG_TAG = '<img src="' + (document.getElementById('eaton-logo-src')?.src || '') + '" alt="Eaton" style="height:32px;display:block;background:#fff;padding:4px 8px;border-radius:3px">';
+
+/* ── STATE ── */
+let chips = { skills: [], soft: [] };
+let expCount = 0, eduCount = 0;
+let currentPanel = 1;
+let showLogo = true;   // marca blanca: true = con logo Eaton, false = sin logo
+
+/* Alterna el logo de Eaton en el CV y vuelve a dibujar */
+function toggleLogo() {
+  const chk = document.getElementById('chk_logo');
+  showLogo = chk ? chk.checked : showLogo;
+  const y = window.scrollY;          // conservar la posición de scroll
+  buildAndShow();
+  window.scrollTo({ top: y });
+}
+
+/* ── NAVIGATION ── */
+function goTo(n) {
+  document.getElementById('panel' + currentPanel).classList.remove('active');
+  currentPanel = n;
+  document.getElementById('panel' + n).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateSteps(n);
+}
+function updateSteps(n) {
+  for (let i = 1; i <= 5; i++) {
+    const dot = document.getElementById('sd' + i);
+    dot.classList.remove('active','done');
+    if (i < n) dot.classList.add('done');
+    if (i === n) dot.classList.add('active');
+    if (i <= 4) document.getElementById('sl' + i).classList.toggle('done', i < n);
+  }
+}
+
+/* ── EXPERIENCE ── */
+function addExp() {
+  expCount++;
+  const id = expCount;
+  const div = document.createElement('div');
+  div.className = 'dyn-block';
+  div.id = 'exp-' + id;
+  div.innerHTML = `
+    <div class="dyn-head">
+      <span class="dyn-label">Trabajo #${id}</span>
+      <div class="dyn-actions">
+        <button type="button" class="btn-move up" title="Subir" onclick="moveExp(${id},-1)">↑</button>
+        <button type="button" class="btn-move down" title="Bajar" onclick="moveExp(${id},1)">↓</button>
+        <button class="btn-del" onclick="removeExp(${id})">✕ Quitar</button>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="fgroup">
+        <label>Nombre de la empresa <span class="req">*</span></label>
+        <input type="text" id="ex_empresa_${id}"
+          placeholder="Ej. Eaton, Grupo M, Hanes, Ocean…"
+          oninput="previewDesc(${id})">
+      </div>
+      <div class="fgroup">
+        <label>Tu puesto <span class="req">*</span>
+          <span class="tip">Escribe con tus palabras si no sabes el nombre oficial</span>
+        </label>
+        <input type="text" id="ex_puesto_${id}"
+          placeholder="Ej. Operador, Técnico, Mecánico…"
+          oninput="previewDesc(${id})">
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="fgroup">
+        <label>¿En qué año entraste? <span class="req">*</span></label>
+        <input type="text" id="ex_inicio_${id}" placeholder="Ej. 2019" maxlength="4"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'');previewDesc(${id})">
+      </div>
+      <div class="fgroup">
+        <label>¿En qué año saliste? <span class="req">*</span>
+          <span class="tip">Si sigues ahí escribe "Actualidad"</span>
+        </label>
+        <input type="text" id="ex_fin_${id}" placeholder="2023 o Actualidad" maxlength="10"
+          oninput="previewDesc(${id})">
+      </div>
+    </div>
+
+    <div class="guided-box">
+      <div class="guided-title">Cuéntanos lo que hacías — responde estas preguntas:</div>
+
+      <div class="fgroup">
+        <label>1. ¿Qué hacías todos los días en ese trabajo? <span class="req">*</span>
+          <span class="tip">Elige tu área y toca las actividades que apliquen, o escribe las tuyas</span>
+        </label>
+        <select class="dept-select" id="ex_dept_${id}" onchange="renderDeptChips(${id})">
+          <option value="">— Selecciona tu área de trabajo para ver opciones rápidas —</option>
+          <option value="manufactura">Manufactura / Producción</option>
+          <option value="mantenimiento">Mantenimiento</option>
+          <option value="calidad">Calidad</option>
+          <option value="rrhh">Recursos Humanos</option>
+          <option value="supply">Supply Chain / Almacén</option>
+          <option value="operaciones">Operaciones</option>
+          <option value="ingenieria">Ingeniería</option>
+        </select>
+        <div class="example-chips" id="ex_chips_${id}" style="margin-top:8px"></div>
+        <textarea id="ex_q1_${id}" rows="2"
+          placeholder="Toca las opciones de arriba o escribe aquí lo que hacías…"
+          oninput="previewDesc(${id})"></textarea>
+      </div>
+
+      <div class="fgroup">
+        <label>2. ¿Cuántas personas trabajaban contigo o supervisabas?</label>
+        <div class="example-chips">
+          <span class="ex-chip" onclick="setQ2(${id},'Trabajaba de forma independiente en mi área')">Solo en mi área</span>
+          <span class="ex-chip" onclick="setQ2(${id},'Trabajaba en equipo de 3 a 5 personas')">Equipo 3–5</span>
+          <span class="ex-chip" onclick="setQ2(${id},'Trabajaba en equipo de 6 a 15 personas')">Equipo 6–15</span>
+          <span class="ex-chip" onclick="setQ2(${id},'Supervisaba un equipo de 5 personas')">Supervisaba 5</span>
+          <span class="ex-chip" onclick="setQ2(${id},'Supervisaba un equipo de 10 o más personas')">Supervisaba +10</span>
+        </div>
+        <input type="text" id="ex_q2_${id}"
+          placeholder="Ej: Trabajaba en equipo de 8 personas en turno de noche"
+          oninput="previewDesc(${id})">
+      </div>
+
+      <div class="fgroup">
+        <label>3. ¿Lograste algo de lo que te sientas orgulloso/a?
+          <span class="tip">Puede ser algo pequeño: llegar siempre puntual, aprender algo nuevo, no tener accidentes…</span>
+        </label>
+        <div class="example-chips">
+          <span class="ex-chip" onclick="setQ3(${id},'Mantuve cero accidentes durante mi tiempo en la empresa')">Cero accidentes</span>
+          <span class="ex-chip" onclick="setQ3(${id},'Aprendí a operar varios tipos de maquinaria')">Aprendí varias máquinas</span>
+          <span class="ex-chip" onclick="setQ3(${id},'Fui reconocido por mi puntualidad y responsabilidad')">Reconocido por puntualidad</span>
+          <span class="ex-chip" onclick="setQ3(${id},'Ayudé a entrenar a compañeros nuevos')">Entrené compañeros</span>
+          <span class="ex-chip" onclick="setQ3(${id},'Cumplí con todas las metas de producción')">Cumplí metas</span>
+          <span class="ex-chip" onclick="setQ3(${id},'Reduje los tiempos de paro en mi área')">Reduje tiempos de paro</span>
+          <span class="ex-chip" onclick="setQ3(${id},'Mejoré procesos en mi área de trabajo')">Mejoré procesos</span>
+          <span class="ex-chip" onclick="setQ3(${id},'Recibí reconocimientos o bonos por desempeño')">Reconocimiento / bono</span>
+        </div>
+        <input type="text" id="ex_q3_${id}"
+          placeholder="Ej: Fui reconocido por puntualidad, aprendí 3 tipos de máquinas…"
+          oninput="previewDesc(${id})">
+      </div>
+    </div>
+
+    <div class="preview-box" id="ex_preview_${id}" style="display:none">
+      <div class="preview-label">Vista previa de tu CV:</div>
+      <div class="preview-text" id="ex_preview_text_${id}"></div>
+    </div>
+  `;
+  document.getElementById('exp-list').appendChild(div);
+  renumberExps();
+}
+
+/* ── EDUCATION ── */
+function addEdu() {
+  eduCount++;
+  const id = eduCount;
+  const div = document.createElement('div');
+  div.className = 'dyn-block';
+  div.id = 'edu-' + id;
+  div.innerHTML = `
+    <div class="dyn-head">
+      <span class="dyn-label">Estudios #${id}</span>
+      <button class="btn-del" onclick="document.getElementById('edu-${id}').remove()">✕ Quitar</button>
+    </div>
+    <div class="fgroup">
+      <label>Nivel de estudios</label>
+      <select id="ed_nivel_${id}">
+        <option value="">— Selecciona —</option>
+        <option>Primaria</option>
+        <option>Secundaria</option>
+        <option>Bachillerato</option>
+        <option>Técnico (INFOTEP / Politécnico)</option>
+        <option>Tecnología (ITLA / universidad)</option>
+        <option>Licenciatura</option>
+        <option>Ingeniería</option>
+        <option>Curso / Certificación</option>
+        <option>Otro</option>
+      </select>
+    </div>
+    <div class="fgroup">
+      <label>Escuela o institución
+        <span class="tip">Si fue un curso del INFOTEP o de empresa, escribe el nombre aquí</span>
+      </label>
+      <input type="text" id="ed_escuela_${id}" placeholder="Ej. INFOTEP, ITLA, UASD, PUCMM, Politécnico…">
+    </div>
+    <div class="fgroup">
+      <label>Especialidad o área (opcional)</label>
+      <input type="text" id="ed_carrera_${id}" placeholder="Ej. Electrónica, Mecatrónica, Electricidad industrial…">
+    </div>
+    <div class="row2">
+      <div class="fgroup">
+        <label>Año de inicio</label>
+        <input type="text" id="ed_inicio_${id}" placeholder="Ej. 2005">
+      </div>
+      <div class="fgroup">
+        <label>Año de término</label>
+        <input type="text" id="ed_fin_${id}" placeholder="Ej. 2008">
+      </div>
+    </div>`;
+  document.getElementById('edu-list').appendChild(div);
+}
+
+/* ── CHIPS ── */
+function chipKey(e, group) {
+  if (e.key === 'Enter' || e.key === ',') {
+    e.preventDefault();
+    const inp = document.getElementById(group + '-input');
+    const val = inp.value.replace(/,/g,'').trim();
+    if (val) { addChip(group, val); inp.value = ''; }
+  }
+}
+function addChip(group, val) {
+  if (!val || chips[group].includes(val)) return;
+  chips[group].push(val);
+  renderChips(group);
+}
+function removeChip(group, val) {
+  chips[group] = chips[group].filter(c => c !== val);
+  renderChips(group);
+}
+function renderChips(group) {
+  const wrap = document.getElementById(group + '-wrap');
+  const inp  = document.getElementById(group + '-input');
+  wrap.querySelectorAll('.chip').forEach(c => c.remove());
+  chips[group].forEach(v => {
+    const c = document.createElement('span');
+    c.className = 'chip';
+    c.innerHTML = `${esc(v)} <span class="chip-x" onclick="removeChip('${group}','${v.replace(/'/g,"\\'")}')">×</span>`;
+    wrap.insertBefore(c, inp);
+  });
+}
+function addPreset(group, val) { addChip(group, val); }
+
+/* ── DEPARTMENT ACTIVITIES ── */
+const DEPT_ACTS = {
+  manufactura: [
+    'Operaba maquinaria de producción','Ensamblaba piezas en línea',
+    'Configuraba y ajustaba máquinas','Cumplía metas de producción diaria',
+    'Llenaba reportes de producción','Aplicaba estándares 5S en mi área',
+    'Seguía hojas de trabajo estandarizado','Detectaba y reportaba defectos',
+    'Realizaba cambios de modelo (changeover)','Operaba prensa / troqueladora',
+    'Trabajaba en línea de soldadura','Hacía pruebas de ensamble final',
+    'Empacaba y etiquetaba producto terminado','Operaba montacargas',
+  ],
+  mantenimiento: [
+    'Realizaba mantenimiento preventivo a máquinas','Reparaba fallas eléctricas y mecánicas',
+    'Diagnosticaba fallas en equipos','Cambiaba piezas y refacciones',
+    'Realizaba lubricación de maquinaria','Programaba y operaba PLCs',
+    'Soldaba y reparaba estructuras metálicas','Revisaba sistemas neumáticos e hidráulicos',
+    'Hacía mantenimiento a sistemas eléctricos industriales','Calibraba equipos e instrumentos',
+    'Llenaba órdenes de trabajo (CMMS)','Levantaba inventario de refacciones',
+    'Coordinaba paros planeados de mantenimiento','Instalaba maquinaria nueva',
+  ],
+  calidad: [
+    'Inspeccionaba piezas y productos en proceso','Realizaba auditorías de calidad en línea',
+    'Medía dimensiones con instrumentos de precisión','Registraba defectos y no conformidades',
+    'Apoyaba en certificaciones ISO','Aplicaba técnicas de control estadístico (SPC)',
+    'Investigaba causas raíz de defectos (8D, 5 por qué)','Aprobaba o rechazaba lotes de producción',
+    'Calibraba instrumentos de medición','Elaboraba reportes de calidad',
+    'Hacía auditorías a proveedores','Capacitaba a operadores en estándares de calidad',
+  ],
+  rrhh: [
+    'Reclutaba y seleccionaba personal','Realizaba entrevistas de trabajo',
+    'Gestionaba altas y bajas de empleados','Procesaba nómina',
+    'Organizaba capacitaciones al personal','Atendía dudas y trámites de empleados',
+    'Llevaba control de asistencia y puntualidad','Coordinaba eventos y actividades de integración',
+    'Aplicaba políticas disciplinarias','Gestionaba beneficios y prestaciones',
+    'Apoyaba en proyectos de clima organizacional','Hacía encuestas de satisfacción',
+  ],
+  supply: [
+    'Recibía y almacenaba materiales','Despachaba materiales a producción',
+    'Hacía conteos cíclicos de inventario','Operaba montacargas y transpaleta',
+    'Gestionaba entradas y salidas en sistema SAP','Coordinaba embarques y entregas',
+    'Verificaba órdenes de compra','Clasificaba y etiquetaba materiales',
+    'Controlaba el FIFO de inventarios','Preparaba pedidos (picking)',
+    'Coordinaba con proveedores','Gestionaba devoluciones de material',
+  ],
+  operaciones: [
+    'Coordinaba el flujo diario de producción','Monitoreaba indicadores de planta (KPIs)',
+    'Asignaba recursos y personal a líneas','Resolucía problemas de producción en tiempo real',
+    'Participaba en reuniones de arranque de turno','Apoyaba en reducción de desperdicios (Lean)',
+    'Coordinaba entre departamentos','Elaboraba reportes de turno',
+    'Daba seguimiento a planes de producción','Implementaba mejoras de proceso',
+    'Controlaba tiempos de ciclo','Verificaba cumplimiento de seguridad e higiene',
+  ],
+  ingenieria: [
+    'Diseñaba y actualizaba procesos de manufactura','Elaboraba hojas de trabajo estandarizado',
+    'Realizaba estudios de tiempos y movimientos','Desarrollaba proyectos de mejora continua',
+    'Validaba nuevos productos o procesos','Daba soporte técnico a líneas de producción',
+    'Diseñaba y modificaba herramentales y fixtures','Analizaba datos de producción y calidad',
+    'Coordinaba proyectos de ingeniería industrial','Creaba y actualizaba planos técnicos',
+    'Implementaba proyectos de automatización','Calculaba capacidades de producción',
+    'Apoyaba lanzamientos de nuevos productos','Hacía análisis AMEF / PFMEA',
+  ],
+};
+
+function renderDeptChips(id) {
+  const dept = document.getElementById('ex_dept_' + id).value;
+  const wrap = document.getElementById('ex_chips_' + id);
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  if (!dept || !DEPT_ACTS[dept]) return;
+  DEPT_ACTS[dept].forEach(act => {
+    const sp = document.createElement('span');
+    sp.className = 'ex-chip';
+    sp.textContent = act;
+    sp.onclick = () => appendGuided(id, 'q1', act, sp);
+    wrap.appendChild(sp);
+  });
+}
+
+function appendGuided(id, q, text, chipEl) {
+  const el = document.getElementById('ex_' + q + '_' + id);
+  if (!el) return;
+  const cur = el.value.trim();
+  if (cur && !cur.endsWith('.')) el.value = cur + '. ' + text;
+  else el.value = (cur ? cur + ' ' : '') + text;
+  if (chipEl) chipEl.classList.toggle('used');
+  previewDesc(id);
+}
+
+function setQ2(id, text) {
+  const el = document.getElementById('ex_q2_' + id);
+  if (el) { el.value = text; previewDesc(id); }
+  // highlight selected chip
+  const chips = el?.closest('.fgroup')?.querySelectorAll('.ex-chip');
+  chips?.forEach(c => c.classList.remove('used'));
+  event?.target?.classList.add('used');
+}
+
+function setQ3(id, text) {
+  const el = document.getElementById('ex_q3_' + id);
+  if (el) { el.value = text; previewDesc(id); }
+  event?.target?.classList.toggle('used');
+}
+
+function removeExp(id) {
+  const el = document.getElementById('exp-' + id);
+  if (el) el.remove();
+  renumberExps();
+}
+function renumberExps() {
+  const blocks = document.querySelectorAll('#exp-list .dyn-block');
+  blocks.forEach((b, i) => {
+    const lab = b.querySelector('.dyn-label');
+    if (lab) lab.textContent = 'Trabajo #' + (i + 1);
+    const up = b.querySelector('.btn-move.up');
+    const dn = b.querySelector('.btn-move.down');
+    if (up) up.disabled = (i === 0);
+    if (dn) dn.disabled = (i === blocks.length - 1);
+  });
+}
+function moveExp(id, dir) {
+  const el = document.getElementById('exp-' + id);
+  if (!el) return;
+  if (dir < 0 && el.previousElementSibling) {
+    el.parentNode.insertBefore(el, el.previousElementSibling);
+  } else if (dir > 0 && el.nextElementSibling) {
+    el.parentNode.insertBefore(el.nextElementSibling, el);
+  }
+  renumberExps();
+}
+
+function buildDesc(id) {
+  const q1 = (document.getElementById('ex_q1_' + id)?.value || '').trim();
+  const q2 = (document.getElementById('ex_q2_' + id)?.value || '').trim();
+  const q3 = (document.getElementById('ex_q3_' + id)?.value || '').trim();
+  let parts = [];
+  if (q1) parts.push(q1.endsWith('.') ? q1 : q1 + '.');
+  if (q2) parts.push(q2.endsWith('.') ? q2 : q2 + '.');
+  if (q3) parts.push(q3.endsWith('.') ? q3 : q3 + '.');
+  return parts.join(' ');
+}
+
+function previewDesc(id) {
+  const desc = buildDesc(id);
+  const box  = document.getElementById('ex_preview_' + id);
+  const txt  = document.getElementById('ex_preview_text_' + id);
+  if (!box || !txt) return;
+  const empresa = v('ex_empresa_' + id) || '—';
+  const puesto  = v('ex_puesto_'  + id) || '—';
+  const inicio  = v('ex_inicio_'  + id) || '?';
+  const fin     = v('ex_fin_'     + id) || '?';
+  if (empresa !== '—' || puesto !== '—' || desc) {
+    txt.innerHTML = '<strong>' + empresa + ' &nbsp;·&nbsp; ' + puesto +
+      ' &nbsp;(' + inicio + ' – ' + fin + ')</strong>' +
+      (desc ? '<br><span style="color:#555">' + desc + '</span>' : '');
+    box.style.display = 'block';
+  } else {
+    box.style.display = 'none';
+  }
+}
+
+function validateExps() {
+  let valid = true;
+  for (let i = 1; i <= expCount; i++) {
+    const block = document.getElementById('exp-' + i);
+    if (!block) continue;
+    const fields = [
+      { id: 'ex_empresa_' + i, msg: 'Escribe el nombre de la empresa' },
+      { id: 'ex_puesto_'  + i, msg: 'Escribe tu puesto o lo que hacías' },
+      { id: 'ex_inicio_'  + i, msg: 'Escribe el año en que entraste' },
+      { id: 'ex_fin_'     + i, msg: 'Escribe el año en que saliste (o "Actualidad")' },
+      { id: 'ex_q1_'     + i, msg: 'Este campo es importante — cuéntanos qué hacías todos los días.' },
+    ];
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
+      if (!el) return;
+      let errEl = document.getElementById(f.id + '_err');
+      if (!errEl) {
+        errEl = document.createElement('div');
+        errEl.className = 'error-msg';
+        errEl.id = f.id + '_err';
+        errEl.textContent = f.msg;
+        el.parentNode.appendChild(errEl);
+      }
+      if (!el.value.trim()) {
+        el.classList.add('field-error');
+        errEl.classList.add('show');
+        valid = false;
+      } else {
+        el.classList.remove('field-error');
+        errEl.classList.remove('show');
+      }
+    });
+  }
+  if (!valid) {
+    // scroll to first error
+    const first = document.querySelector('.field-error');
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  return valid;
+}
+
+/* ── READ DATA ── */
+function getData() {
+  const expData = [];
+  document.querySelectorAll('#exp-list .dyn-block').forEach(block => {
+    const i = block.id.replace('exp-', '');
+    expData.push({
+      empresa: v('ex_empresa_' + i),
+      puesto:  v('ex_puesto_'  + i),
+      inicio:  v('ex_inicio_'  + i),
+      fin:     v('ex_fin_'     + i),
+      desc:    buildDesc(i),
+    });
+  });
+  const eduData = [];
+  for (let i = 1; i <= eduCount; i++) {
+    if (!document.getElementById('edu-' + i)) continue;
+    eduData.push({
+      nivel:   v('ed_nivel_'   + i),
+      escuela: v('ed_escuela_' + i),
+      carrera: v('ed_carrera_' + i),
+      inicio:  v('ed_inicio_'  + i),
+      fin:     v('ed_fin_'     + i),
+    });
+  }
+  return {
+    pais:     v('f_pais'),
+    nombre:   v('f_nombre').trim(),
+    apellido: v('f_apellido').trim(),
+    puesto:   v('f_puesto'),
+    tel:      v('f_tel'),
+    ciudad:   v('f_ciudad'),
+    email:    v('f_email'),
+    resumen:  v('f_resumen'),
+    certs:    v('f_certs'),
+    skills:   chips.skills,
+    soft:     chips.soft,
+    exps:     expData,
+    edus:     eduData,
+  };
+}
+function v(id) { return document.getElementById(id)?.value || ''; }
+
+/* ── BUILD CV ── */
+function buildAndShow() {
+  const d = getData();
+  if (!d.nombre) { alert('Por favor escribe tu nombre antes de continuar.'); goTo(1); return; }
+
+  const fullName = `${d.nombre} ${d.apellido}`;
+  const contactItems = [
+    d.tel    ? `${(PAIS_DATA[d.pais]||PAIS_DATA.rd).code} ${d.tel}` : '',
+    d.email  ? `${d.email}` : '',
+    d.ciudad ? `${d.ciudad}` : '',
+  ].filter(Boolean);
+
+  /* Experience */
+  let expHtml = '';
+  if (d.exps.length) {
+    expHtml = `<div class="cv-sec"><div class="cv-sec-title">Experiencia laboral</div>` +
+      d.exps.map(e => `
+        <div class="cv-item">
+          <div class="cv-item-head">
+            <span class="cv-item-co">${esc(e.empresa) || 'Empresa'}</span>
+            ${(e.inicio||e.fin) ? `<span class="cv-item-dates">${esc(e.inicio)}${e.fin?' – '+esc(e.fin):''}</span>` : ''}
+          </div>
+          ${e.puesto ? `<div class="cv-item-role">${esc(e.puesto)}</div>` : ''}
+          ${e.desc   ? `<div class="cv-item-desc">${esc(e.desc).replace(/\n/g,'<br>')}</div>` : ''}
+        </div>`).join('') + `</div>`;
+  }
+
+  /* Skills */
+  const skillTags = d.skills.map(s=>`<span class="cv-skill">${esc(s)}</span>`).join('');
+  const softTags  = d.soft.map(s=>`<span class="cv-skill">${esc(s)}</span>`).join('');
+  let skillsHtml = '';
+  if (skillTags || softTags) {
+    skillsHtml = `<div class="cv-sec"><div class="cv-sec-title">Habilidades</div>
+      ${skillTags ? `<div style="margin-bottom:8px">${skillTags}</div>` : ''}
+      ${softTags  ? `<div>${softTags}</div>` : ''}
+    </div>`;
+  }
+
+  /* Education (sidebar) */
+  let eduHtml = '';
+  if (d.edus.length) {
+    eduHtml = `<div class="cv-side-sec"><div class="cv-side-title">Educación</div>` +
+      d.edus.map(e=>`
+        <div class="cv-side-item">
+          <strong>${esc(e.nivel)}${e.carrera?' – '+esc(e.carrera):''}</strong>
+          ${e.escuela?`<span>${esc(e.escuela)}</span>`:''}
+          ${(e.inicio||e.fin)?`<span>${esc(e.inicio)}${e.fin?' – '+esc(e.fin):''}</span>`:''}
+        </div>`).join('') + `</div>`;
+  }
+
+  /* Certs (sidebar) */
+  let certsHtml = '';
+  if (d.certs.trim()) {
+    certsHtml = `<div class="cv-side-sec"><div class="cv-side-title">Certificaciones</div>` +
+      d.certs.split('\n').filter(Boolean).map(c=>`<div class="cv-side-item">• ${esc(c)}</div>`).join('') +
+      `</div>`;
+  }
+
+  /* Contact sidebar */
+  let contactSide = '';
+  if (d.tel || d.email || d.ciudad) {
+    contactSide = `<div class="cv-side-sec"><div class="cv-side-title">Contacto</div>
+      ${d.tel    ? `<div class="cv-side-item"><strong>Teléfono</strong><span>${esc(d.tel)}</span></div>`   : ''}
+      ${d.email  ? `<div class="cv-side-item"><strong>Correo</strong><span>${esc(d.email)}</span></div>`  : ''}
+      ${d.ciudad ? `<div class="cv-side-item"><strong>Ciudad</strong><span>${esc(d.ciudad)}</span></div>` : ''}
+    </div>`;
+  }
+
+  document.getElementById('cv-wrap').innerHTML = `
+    <div id="cv-preview">
+      <div class="cv-top">
+        <div class="cv-top-inner">
+          <div>
+            <div class="cv-name">${esc(fullName)}</div>
+            ${d.puesto ? `<div class="cv-pos">${esc(d.puesto)}</div>` : ''}
+            <div class="cv-pais">${({mx:'México',pr:'Puerto Rico',rd:'República Dominicana'})[d.pais]||''}</div>
+          </div>
+          ${showLogo ? LOGO_IMG_TAG : ''}
+        </div>
+      </div>
+      ${contactItems.length ? `<div class="cv-bar">${contactItems.map(i=>`<div class="cv-bar-item">${i}</div>`).join('')}</div>` : ''}
+      <div class="cv-body">
+        <div class="cv-main">
+          ${d.resumen ? `<div class="cv-sec"><div class="cv-sec-title">Perfil profesional</div><div class="cv-summary">${esc(d.resumen).replace(/\n/g,'<br>')}</div></div>` : ''}
+          ${expHtml}
+          ${skillsHtml}
+        </div>
+        <div class="cv-side">
+          ${contactSide}
+          ${eduHtml}
+          ${certsHtml}
+        </div>
+      </div>
+      <div class="cv-footer">
+        <span class="cv-footer-name">${esc(fullName)}</span>
+        <span class="cv-footer-meta">${({mx:'México',pr:'Puerto Rico',rd:'República Dominicana'})[d.pais]||''} · ${new Date().getFullYear()}</span>
+      </div>
+    </div>`;
+
+  goTo(5);
+}
+
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ── COUNTRY DATA ── */
+const PAIS_DATA = {
+  mx: {
+    code: '+52',
+    placeholder: '55 1234 5678',
+    ciudades: [],
+  },
+  rd: {
+    code: '+1',
+    placeholder: '809-555-1234',
+    ciudades: ['Santo Domingo','Santiago de los Caballeros','La Romana',
+      'San Pedro de Macorís','La Vega','San Francisco de Macorís',
+      'San Cristóbal','Puerto Plata','Higüey','Moca','Bonao',
+      'Barahona','Azua','Cotuí','Nagua'],
+  },
+  pr: {
+    code: '+1',
+    placeholder: '787-555-1234',
+    ciudades: ['San Juan','Bayamón','Carolina','Ponce','Caguas',
+      'Guaynabo','Arecibo','Toa Baja','Mayagüez','Trujillo Alto',
+      'Fajardo','Humacao','Aguadilla','Manatí','Vega Baja'],
+  },
+};
+
+function onPaisChange() {
+  const pais = document.getElementById('f_pais').value;
+  const data = PAIS_DATA[pais] || PAIS_DATA.rd;
+  // Update phone code display
+  document.getElementById('f_tel_code').textContent = data.code;
+  // Update phone placeholder
+  document.getElementById('f_tel').placeholder = data.placeholder;
+  // Update city datalist
+  const dl = document.getElementById('ciudades-list');
+  dl.innerHTML = data.ciudades.map(c => `<option value="${c}">`).join('');
+  // Update city placeholder
+  document.getElementById('f_ciudad').placeholder = data.ciudades.length
+    ? 'Ej. ' + data.ciudades.slice(0,3).join(', ') + '…'
+    : 'Escribe tu ciudad';
+}
+
+// Init on load
+document.addEventListener('DOMContentLoaded', onPaisChange);
+
+
+/* ── SKILLS BY DEPARTMENT ── */
+const SKILLS_BY_DEPT = {
+  manufactura: [
+    'Operación de maquinaria industrial','Líneas de ensamble','Operación CNC',
+    'Soldadura MIG/TIG','Soldadura por puntos','Operación de prensa/troqueladora',
+    'Operación de montacargas','Lectura de hojas de trabajo','5S / Kaizen',
+    'Lean Manufacturing','Cambios de modelo (changeover)','Control visual',
+    'Empaque y etiquetado','Manejo de materiales','Seguridad industrial',
+    'Trabajo en turno nocturno','Operación de grúa viajera','Costura industrial',
+    'Producción de cigarros / tabaco','Manufactura de arneses',
+  ],
+  mantenimiento: [
+    'Mantenimiento preventivo','Mantenimiento correctivo','Diagnóstico de fallas eléctricas',
+    'Diagnóstico de fallas mecánicas','Programación de PLCs','Automatización industrial',
+    'Electricidad industrial','Neumática','Hidráulica','Instrumentación y control',
+    'Soldadura estructural','Lectura de planos eléctricos','Lectura de planos mecánicos',
+    'Calibración de equipos','Lubricación industrial','CMMS (gestión de mantenimiento)',
+    'Cambio de rodamientos y transmisiones','Metrología','Mecánica general',
+    'Instalación de maquinaria','SAP PM (Mantenimiento)','Torneado / Fresado',
+  ],
+  calidad: [
+    'Control estadístico de proceso (SPC)','Inspección de producto en proceso',
+    'Uso de instrumentos de medición','Calibración de instrumentos','Auditorías internas ISO',
+    'Normas ISO 9001','IATF 16949','Análisis de causa raíz (8D / 5 por qué)',
+    'AMEF / PFMEA','Planes de control','GD&T (tolerancias geométricas)',
+    'Metrología dimensional','Rechazo y disposición de material','Llenado de reportes de calidad',
+    'Manejo de no conformidades','Certificación de proveedores','Laboratorio de calidad',
+  ],
+  rrhh: [
+    'Reclutamiento y selección','Entrevistas por competencias','Onboarding de personal',
+    'Procesamiento de nómina','Control de asistencia','Gestión de expedientes',
+    'Aplicación de políticas disciplinarias','Capacitación y desarrollo',
+    'Relaciones laborales','Gestión de prestaciones y beneficios',
+    'Clima organizacional','Manejo de conflictos','Comunicación interna',
+    'Manejo de sistemas de RRHH (SAP HR)','Evaluación de desempeño',
+  ],
+  supply: [
+    'Gestión de inventarios','Recibo y despacho de materiales','Operación de montacargas',
+    'Operación de transpaleta eléctrica','Control FIFO / FEFO','SAP MM (Materiales)',
+    'Picking y preparación de pedidos','Clasificación y etiquetado','Conteos cíclicos',
+    'Coordinación de embarques','Gestión de proveedores','Importaciones y exportaciones',
+    'Logística de transporte','Manejo de órdenes de compra','WMS (sistemas de almacén)',
+    'Control de mermas','Zona franca / aduanas',
+  ],
+  operaciones: [
+    'Gestión de KPIs de producción','Balanceo de líneas','Programación de producción',
+    'Arranque y cierre de turno','Lean Manufacturing','Six Sigma','Kaizen / Mejora continua',
+    'Reducción de desperdicios (DMAIC)','Coordinación interdepartamental',
+    'Gestión visual / tableros','Análisis de eficiencia (OEE)','Seguridad e higiene industrial',
+    'Cumplimiento de regulaciones ambientales','Reportes de turno y producción',
+    'SAP PP (Planificación de producción)',
+  ],
+  ingenieria: [
+    'Ingeniería de manufactura','Diseño de procesos productivos','Estudios de tiempos y movimientos',
+    'Hojas de trabajo estandarizado','Validación de procesos (IQ/OQ/PQ)',
+    'Lanzamiento de nuevos productos (NPI)','AutoCAD / SolidWorks','AMEF / PFMEA',
+    'Planes de control','Análisis de capacidad (Cpk)','Diseño de herramentales y fixtures',
+    'Automatización y robótica','Programación de PLCs','Cálculo de capacidades de planta',
+    'Proyectos de mejora continua','Ingeniería industrial','Simulación de procesos',
+    'Análisis de datos con Excel / Minitab',
+  ],
+};
+
+function renderSkillChips() {
+  const dept = document.getElementById('skill_dept').value;
+  const wrap = document.getElementById('skill-presets');
+  wrap.innerHTML = '';
+  if (!dept || !SKILLS_BY_DEPT[dept]) return;
+  SKILLS_BY_DEPT[dept].forEach(skill => {
+    const btn = document.createElement('button');
+    btn.className = 'preset-btn';
+    btn.textContent = skill;
+    btn.onclick = () => {
+      addPreset('skills', skill);
+      btn.classList.toggle('preset-sel');
+    };
+    wrap.appendChild(btn);
+  });
+}
+
+</script>
+
+<datalist id="ciudades-list"></datalist>
+</body>
+</html>

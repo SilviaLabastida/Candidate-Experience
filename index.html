@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Powering your career – Eaton</title>
+<style>
+:root{
+  --navy:#011d30; --navy2:#00263d; --panel:#0a2c47; --blue:#005EB8; --blue-lt:#3f8fd0;
+  --teal:#00B2A9; --yellow:#FFC72C; --text:#eaf1f8; --muted:#9fb5c9; --border:rgba(255,255,255,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'Univers','Open Sans',Arial,sans-serif;color:var(--text);
+  background:radial-gradient(1100px 600px at 80% -10%, rgba(0,178,169,.12), transparent 60%),
+             radial-gradient(900px 600px at 10% 0%, rgba(0,94,184,.18), transparent 55%),
+             linear-gradient(180deg,#011d30 0%,#00263d 60%,#012238 100%);
+  min-height:100vh}
+
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:15px 22px;
+  background:rgba(3,28,46,.55);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);
+  border-bottom:1px solid rgba(255,255,255,.1)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:30px;background:#fff;border-radius:4px;padding:4px 9px;display:block}
+.brand span{font-size:12px;color:var(--muted);letter-spacing:.5px}
+.tag-priv{font-size:10.5px;color:#bfe6cb;background:rgba(76,141,43,.2);border:1px solid rgba(120,200,90,.4);
+  padding:6px 12px;border-radius:20px;font-weight:700;letter-spacing:.3px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+/* HERO */
+.hero{position:relative;padding:64px 0 0;overflow:hidden}
+.hero-scene{position:absolute;left:0;right:0;bottom:0;width:100%;height:300px;z-index:0;pointer-events:none}
+.hero-scene svg{width:100%;height:100%;display:block}
+.hero-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg, rgba(1,29,48,.65) 0%, rgba(1,29,48,.15) 45%, rgba(1,29,48,.0) 70%)}
+.hero-inner{position:relative;z-index:2;max-width:1060px;margin:0 auto;padding:0 20px 150px}
+.kicker{display:inline-block;color:var(--yellow);font-size:12px;font-weight:800;letter-spacing:2.5px;
+  text-transform:uppercase;margin-bottom:18px;padding-bottom:9px;border-bottom:2px solid var(--yellow)}
+h1{font-size:clamp(40px,7vw,72px);font-weight:800;line-height:.98;letter-spacing:-.5px;
+  color:#fff;text-transform:uppercase;max-width:13ch}
+h1 .accent{color:var(--teal)}
+.sub{margin-top:16px;font-size:clamp(17px,2.4vw,22px);color:var(--text);font-weight:600}
+.intro{margin-top:14px;font-size:15.5px;color:var(--muted);line-height:1.6;max-width:54ch}
+@keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+.pulse{animation:pulse 3.4s ease-in-out infinite}
+
+/* CARDS */
+.cards{position:relative;z-index:3;display:grid;grid-template-columns:1fr 1fr;gap:18px;
+  max-width:1060px;margin:-90px auto 0;padding:0 20px 70px}
+@media(max-width:720px){.cards{grid-template-columns:1fr;margin-top:-60px}}
+.card{display:flex;flex-direction:column;background:linear-gradient(155deg,rgba(255,255,255,.13),rgba(255,255,255,.04));
+  border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:28px 26px;text-decoration:none;color:inherit;
+  position:relative;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s;
+  backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);
+  box-shadow:0 14px 42px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.22)}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--blue);transition:width .2s;z-index:2}
+.card.two::before{background:var(--teal)}
+.card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.38);box-shadow:0 24px 58px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.3)}
+.card:hover::before{width:8px}
+.card-ico{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,94,184,.22);color:#8fc0ee;margin-bottom:18px}
+.card.two .card-ico{background:rgba(0,178,169,.2);color:#73e3da}
+.card-ico svg{width:28px;height:28px}
+.card h2{font-size:22px;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:.2px}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.6;flex:1}
+.card-go{margin-top:20px;display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:15px;color:#fff;
+  background:var(--blue);align-self:flex-start;padding:12px 22px;border-radius:9px;transition:background .2s}
+.card.two .card-go{background:var(--teal);color:#012a27}
+.card:hover .card-go{filter:brightness(1.08)}
+
+.note{max-width:1060px;margin:0 auto;padding:0 20px 50px;color:var(--muted);font-size:13px;line-height:1.6;
+  display:flex;gap:10px;align-items:flex-start}
+.note .dot{color:var(--teal);font-weight:800;font-size:18px;line-height:1}
+
+footer{border-top:1px solid var(--border);padding:24px 20px;text-align:center}
+footer .motto{color:var(--text);font-size:12.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
+footer .small{color:var(--muted);font-size:11px;margin-top:6px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><img src="data:image/jpeg;base64,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" alt="Eaton"><span>Powering your career</span></div>
+  <div class="tag-priv">Sin almacenamiento · Funciona sin internet</div>
+</header>
+
+<section class="hero">
+  <div class="hero-scene">
+    <svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="glow" x="-300%" y="-300%" width="700%" height="700%">
+          <feGaussianBlur stdDeviation="3.2" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <path d="M236.0 252.0 Q395.9 322.8 555.7 284.4" fill="none" stroke="#6f93b4" stroke-width="0.90" opacity="0.28"/>
+<path d="M344.0 252.0 Q494.1 320.4 644.3 284.4" fill="none" stroke="#6f93b4" stroke-width="0.90" opacity="0.28"/>
+<path d="M245.0 212.0 Q404.0 289.8 563.1 251.6" fill="none" stroke="#6f93b4" stroke-width="0.90" opacity="0.28"/>
+<path d="M335.0 212.0 Q485.9 287.8 636.9 251.6" fill="none" stroke="#6f93b4" stroke-width="0.90" opacity="0.28"/>
+<path d="M254.0 174.0 Q412.2 258.4 570.5 220.4" fill="none" stroke="#6f93b4" stroke-width="0.90" opacity="0.28"/>
+<path d="M326.0 174.0 Q477.8 256.9 629.5 220.4" fill="none" stroke="#6f93b4" stroke-width="0.90" opacity="0.28"/>
+<path d="M290.0 122.0 Q445.0 215.0 600.0 177.8" fill="none" stroke="#6f93b4" stroke-width="0.90" opacity="0.28"/>
+<path d="M555.7 284.4 Q696.6 350.6 837.4 316.8" fill="none" stroke="#6f93b4" stroke-width="0.74" opacity="0.28"/>
+<path d="M644.3 284.4 Q775.4 348.3 906.6 316.8" fill="none" stroke="#6f93b4" stroke-width="0.74" opacity="0.28"/>
+<path d="M563.1 251.6 Q703.1 324.8 843.2 291.2" fill="none" stroke="#6f93b4" stroke-width="0.74" opacity="0.28"/>
+<path d="M636.9 251.6 Q768.9 322.9 900.8 291.2" fill="none" stroke="#6f93b4" stroke-width="0.74" opacity="0.28"/>
+<path d="M570.5 220.4 Q709.7 300.3 849.0 266.9" fill="none" stroke="#6f93b4" stroke-width="0.74" opacity="0.28"/>
+<path d="M629.5 220.4 Q762.3 298.7 895.0 266.9" fill="none" stroke="#6f93b4" stroke-width="0.74" opacity="0.28"/>
+<path d="M600.0 177.8 Q736.0 266.2 872.0 233.6" fill="none" stroke="#6f93b4" stroke-width="0.74" opacity="0.28"/>
+<path d="M837.4 316.8 Q950.2 369.1 1063.0 342.0" fill="none" stroke="#6f93b4" stroke-width="0.58" opacity="0.28"/>
+<path d="M906.6 316.8 Q1011.8 367.3 1117.0 342.0" fill="none" stroke="#6f93b4" stroke-width="0.58" opacity="0.28"/>
+<path d="M843.2 291.2 Q955.4 348.9 1067.5 322.0" fill="none" stroke="#6f93b4" stroke-width="0.58" opacity="0.28"/>
+<path d="M900.8 291.2 Q1006.7 347.4 1112.5 322.0" fill="none" stroke="#6f93b4" stroke-width="0.58" opacity="0.28"/>
+<path d="M849.0 266.9 Q960.5 329.8 1072.0 303.0" fill="none" stroke="#6f93b4" stroke-width="0.58" opacity="0.28"/>
+<path d="M895.0 266.9 Q1001.5 328.6 1108.0 303.0" fill="none" stroke="#6f93b4" stroke-width="0.58" opacity="0.28"/>
+<path d="M872.0 233.6 Q981.0 303.2 1090.0 277.0" fill="none" stroke="#6f93b4" stroke-width="0.58" opacity="0.28"/>
+<g opacity="0.92"><line x1="245.0" y1="432.0" x2="275.0" y2="262.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="335.0" y1="432.0" x2="305.0" y2="262.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="245.0" y1="432.0" x2="335.0" y2="432.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="275.0" y1="262.0" x2="305.0" y2="262.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="275.0" y1="262.0" x2="282.0" y2="142.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="305.0" y1="262.0" x2="298.0" y2="142.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="282.0" y1="142.0" x2="298.0" y2="142.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="282.0" y1="142.0" x2="290.0" y2="122.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="298.0" y1="142.0" x2="290.0" y2="122.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="236.0" y1="252.0" x2="344.0" y2="252.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="245.0" y1="212.0" x2="335.0" y2="212.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="254.0" y1="174.0" x2="326.0" y2="174.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="245.0" y1="432.0" x2="324.9" y2="375.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="335.0" y1="432.0" x2="255.1" y2="375.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="255.1" y1="375.0" x2="324.9" y2="375.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="255.1" y1="375.0" x2="315.1" y2="319.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="324.9" y1="375.0" x2="264.9" y2="319.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="264.9" y1="319.0" x2="315.1" y2="319.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="264.9" y1="319.0" x2="305.0" y2="262.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="315.1" y1="319.0" x2="275.0" y2="262.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="275.0" y1="262.0" x2="305.0" y2="262.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="236.0" y1="252.0" x2="236.0" y2="262.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="344.0" y1="252.0" x2="344.0" y2="262.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="245.0" y1="212.0" x2="245.0" y2="222.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="335.0" y1="212.0" x2="335.0" y2="222.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="254.0" y1="174.0" x2="254.0" y2="184.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/><line x1="326.0" y1="174.0" x2="326.0" y2="184.0" stroke="#7ea4c7" stroke-width="1.70" stroke-linecap="round"/></g>
+<g opacity="0.7"><line x1="563.1" y1="432.0" x2="587.7" y2="292.6" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="636.9" y1="432.0" x2="612.3" y2="292.6" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="563.1" y1="432.0" x2="636.9" y2="432.0" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="587.7" y1="292.6" x2="612.3" y2="292.6" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="587.7" y1="292.6" x2="593.4" y2="194.2" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="612.3" y1="292.6" x2="606.6" y2="194.2" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="593.4" y1="194.2" x2="606.6" y2="194.2" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="593.4" y1="194.2" x2="600.0" y2="177.8" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="606.6" y1="194.2" x2="600.0" y2="177.8" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="555.7" y1="284.4" x2="644.3" y2="284.4" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="563.1" y1="251.6" x2="636.9" y2="251.6" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="570.5" y1="220.4" x2="629.5" y2="220.4" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="563.1" y1="432.0" x2="628.7" y2="385.3" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="636.9" y1="432.0" x2="571.3" y2="385.3" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="571.3" y1="385.3" x2="628.7" y2="385.3" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="571.3" y1="385.3" x2="620.5" y2="339.3" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="628.7" y1="385.3" x2="579.5" y2="339.3" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="579.5" y1="339.3" x2="620.5" y2="339.3" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="579.5" y1="339.3" x2="612.3" y2="292.6" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="620.5" y1="339.3" x2="587.7" y2="292.6" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="587.7" y1="292.6" x2="612.3" y2="292.6" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="555.7" y1="284.4" x2="555.7" y2="292.6" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="644.3" y1="284.4" x2="644.3" y2="292.6" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="563.1" y1="251.6" x2="563.1" y2="259.8" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="636.9" y1="251.6" x2="636.9" y2="259.8" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="570.5" y1="220.4" x2="570.5" y2="228.6" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/><line x1="629.5" y1="220.4" x2="629.5" y2="228.6" stroke="#6f93b4" stroke-width="1.39" stroke-linecap="round"/></g>
+<g opacity="0.5"><line x1="843.2" y1="432.0" x2="862.4" y2="323.2" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="900.8" y1="432.0" x2="881.6" y2="323.2" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="843.2" y1="432.0" x2="900.8" y2="432.0" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="862.4" y1="323.2" x2="881.6" y2="323.2" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="862.4" y1="323.2" x2="866.9" y2="246.4" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="881.6" y1="323.2" x2="877.1" y2="246.4" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="866.9" y1="246.4" x2="877.1" y2="246.4" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="866.9" y1="246.4" x2="872.0" y2="233.6" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="877.1" y1="246.4" x2="872.0" y2="233.6" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="837.4" y1="316.8" x2="906.6" y2="316.8" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="843.2" y1="291.2" x2="900.8" y2="291.2" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="849.0" y1="266.9" x2="895.0" y2="266.9" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="843.2" y1="432.0" x2="894.4" y2="395.5" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="900.8" y1="432.0" x2="849.6" y2="395.5" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="849.6" y1="395.5" x2="894.4" y2="395.5" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="849.6" y1="395.5" x2="888.0" y2="359.7" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="894.4" y1="395.5" x2="856.0" y2="359.7" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="856.0" y1="359.7" x2="888.0" y2="359.7" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="856.0" y1="359.7" x2="881.6" y2="323.2" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="888.0" y1="359.7" x2="862.4" y2="323.2" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="862.4" y1="323.2" x2="881.6" y2="323.2" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="837.4" y1="316.8" x2="837.4" y2="323.2" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="906.6" y1="316.8" x2="906.6" y2="323.2" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="843.2" y1="291.2" x2="843.2" y2="297.6" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="900.8" y1="291.2" x2="900.8" y2="297.6" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="849.0" y1="266.9" x2="849.0" y2="273.3" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/><line x1="895.0" y1="266.9" x2="895.0" y2="273.3" stroke="#5e7e9c" stroke-width="1.09" stroke-linecap="round"/></g>
+<g opacity="0.34"><line x1="1067.5" y1="432.0" x2="1082.5" y2="347.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1112.5" y1="432.0" x2="1097.5" y2="347.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1067.5" y1="432.0" x2="1112.5" y2="432.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1082.5" y1="347.0" x2="1097.5" y2="347.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1082.5" y1="347.0" x2="1086.0" y2="287.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1097.5" y1="347.0" x2="1094.0" y2="287.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1086.0" y1="287.0" x2="1094.0" y2="287.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1086.0" y1="287.0" x2="1090.0" y2="277.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1094.0" y1="287.0" x2="1090.0" y2="277.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1063.0" y1="342.0" x2="1117.0" y2="342.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1067.5" y1="322.0" x2="1112.5" y2="322.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1072.0" y1="303.0" x2="1108.0" y2="303.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1067.5" y1="432.0" x2="1107.5" y2="403.5" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1112.5" y1="432.0" x2="1072.5" y2="403.5" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1072.5" y1="403.5" x2="1107.5" y2="403.5" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1072.5" y1="403.5" x2="1102.5" y2="375.5" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1107.5" y1="403.5" x2="1077.5" y2="375.5" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1077.5" y1="375.5" x2="1102.5" y2="375.5" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1077.5" y1="375.5" x2="1097.5" y2="347.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1102.5" y1="375.5" x2="1082.5" y2="347.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1082.5" y1="347.0" x2="1097.5" y2="347.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1063.0" y1="342.0" x2="1063.0" y2="347.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1117.0" y1="342.0" x2="1117.0" y2="347.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1067.5" y1="322.0" x2="1067.5" y2="327.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1112.5" y1="322.0" x2="1112.5" y2="327.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1072.0" y1="303.0" x2="1072.0" y2="308.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/><line x1="1108.0" y1="303.0" x2="1108.0" y2="308.0" stroke="#4d6a85" stroke-width="0.85" stroke-linecap="round"/></g>
+<circle cx="254.0" cy="174.0" r="2.60" fill="#00B2A9" filter="url(#glow)" class="pulse"/>
+<circle cx="326.0" cy="174.0" r="2.60" fill="#00B2A9" filter="url(#glow)" class=""/>
+<circle cx="290.0" cy="122.0" r="2.60" fill="#FFC72C" filter="url(#glow)" class="pulse"/>
+<circle cx="570.5" cy="220.4" r="2.13" fill="#00B2A9" filter="url(#glow)" class=""/>
+<circle cx="629.5" cy="220.4" r="2.13" fill="#00B2A9" filter="url(#glow)" class="pulse"/>
+<circle cx="600.0" cy="177.8" r="2.13" fill="#FFC72C" filter="url(#glow)" class=""/>
+<circle cx="849.0" cy="266.9" r="1.66" fill="#00B2A9" filter="url(#glow)" class="pulse"/>
+<circle cx="895.0" cy="266.9" r="1.66" fill="#00B2A9" filter="url(#glow)" class=""/>
+<circle cx="872.0" cy="233.6" r="1.66" fill="#FFC72C" filter="url(#glow)" class="pulse"/>
+    </svg>
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="hero-inner">
+    <div class="kicker">Eaton · Powering your career</div>
+    <h1>Powering <span class="accent">your</span> career</h1>
+    <div class="sub">Prepárate para tu próximo empleo</div>
+    <p class="intro">Dos herramientas gratuitas para ayudarte a dar tu mejor paso: crea un currículum claro y practica para tu entrevista. Sin registros y sin guardar nada.</p>
+  </div>
+</section>
+
+<div class="cards">
+  <a class="card one" href="eaton-cv-generator.html">
+    <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h6"/></svg></div>
+    <h2>Genera tu CV</h2>
+    <p>Crea un currículum profesional paso a paso, listo para imprimir o guardar en PDF. Pensado también para quien postula por primera vez.</p>
+    <span class="card-go">Crear mi CV →</span>
+  </a>
+  <a class="card two" href="eaton-entrevista.html">
+    <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+    <h2>Prepárate para tu entrevista</h2>
+    <p>Qué esperar, cómo contar tus historias con el método STAR y un auto-chequeo rápido, adaptado a tu tipo de puesto y a tu área.</p>
+    <span class="card-go">Practicar ahora →</span>
+  </a>
+</div>
+
+<div class="note"><span class="dot">•</span><span>Estas herramientas son solo para tu práctica personal. Todo se procesa en tu dispositivo, no se guarda ni se comparte ninguna información, y funcionan incluso sin conexión a internet.</span></div>
+
+<footer>
+  <div class="motto">Eaton · Hacemos que lo que importa funcione</div>
+  <div class="small">Powering your career — Prepárate para tu próximo empleo</div>
+</footer>
+
+</body>
+</html>

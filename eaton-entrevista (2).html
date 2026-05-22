@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prepárate para tu entrevista – Eaton</title>
+<style>
+:root{
+  --blue:#005EB8; --blue-dark:#003865; --blue-700:#004a8f; --teal:#00B2A9;
+  --yellow:#FFC72C; --yellow2:#F0B323; --orange:#ED8B00;
+  --gray:#5B6770; --gray-lt:#98A4AE; --green:#4C8D2B; --red:#D22730;
+  --white:#fff; --light:#F4F6F9; --border:#DDE3E9;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'Univers','Open Sans',Arial,sans-serif;background:#f2f5f8;color:#16202b;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,#f5f7fa,#eef1f5)}
+
+header{background:linear-gradient(100deg,var(--blue-dark) 0%,var(--blue-700) 100%);
+  padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,28,56,.22);flex-wrap:wrap;border-bottom:3px solid var(--yellow)}
+.brand{display:flex;align-items:center;gap:13px}
+.brand img{height:30px;display:block;background:#fff;border-radius:4px;padding:3px 8px}
+.brand-sub{color:rgba(255,255,255,.72);font-size:11.5px;line-height:1.25}
+.brand-sub strong{color:#fff;font-weight:700;display:block;font-size:13.5px;letter-spacing:.2px}
+.head-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.head-sel{display:none;gap:7px}
+.head-sel.show{display:flex}
+.head-sel select{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.28);
+  border-radius:7px;padding:6px 8px;font-family:'Univers','Open Sans',Arial,sans-serif;font-size:12.5px;font-weight:600;max-width:165px}
+.head-sel select option{color:#16202b}
+.privacy-pill{background:rgba(76,141,43,.22);border:1px solid rgba(120,200,90,.5);color:#bfe6a8;
+  font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:20px;white-space:nowrap;letter-spacing:.3px}
+
+main{max-width:780px;margin:0 auto;padding:24px 16px 96px}
+.screen{display:none;animation:rise .35s cubic-bezier(.2,.8,.2,1)}
+.screen.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.stagger>*{opacity:0;animation:rise .5s cubic-bezier(.2,.8,.2,1) forwards}
+.stagger>*:nth-child(1){animation-delay:.05s}.stagger>*:nth-child(2){animation-delay:.12s}
+.stagger>*:nth-child(3){animation-delay:.19s}.stagger>*:nth-child(4){animation-delay:.26s}
+.stagger>*:nth-child(5){animation-delay:.33s}.stagger>*:nth-child(6){animation-delay:.4s}
+.stagger>*:nth-child(7){animation-delay:.47s}
+
+.privacy-note{background:#edf6ea;border:1px solid rgba(76,141,43,.35);border-left:4px solid var(--green);
+  border-radius:9px;padding:12px 15px;font-size:13.5px;color:#33531f;line-height:1.55;margin-bottom:20px}
+.privacy-note strong{color:var(--green)}
+
+.card{background:#fff;border-radius:16px;box-shadow:0 6px 30px rgba(12,38,68,.10);padding:28px 24px;position:relative;overflow:hidden;margin-bottom:18px}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--blue)}
+.kicker{display:inline-block;color:var(--blue);font-size:11.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:15px;padding-bottom:9px;border-bottom:2px solid var(--yellow)}
+h1.title{font-family:'Univers','Open Sans',Arial,sans-serif;font-size:29px;font-weight:800;color:var(--blue-dark);letter-spacing:.3px;line-height:1.05;margin-bottom:10px;text-transform:uppercase;position:relative}
+.lead{font-size:15.5px;color:var(--gray);line-height:1.6;margin-bottom:22px;position:relative}
+.sec-title{font-family:'Univers','Open Sans',Arial,sans-serif;font-size:19px;font-weight:800;color:var(--blue-dark);letter-spacing:.3px;text-transform:uppercase;margin-bottom:6px}
+.sec-hint{font-size:13.5px;color:#3a4a59;background:#eef4fa;border-left:3px solid var(--teal);padding:11px 14px;border-radius:0 7px 7px 0;line-height:1.55;margin-bottom:22px}
+.sec-hint strong{color:var(--blue-dark)}
+
+label.fld{display:block;font-size:11.5px;font-weight:700;color:var(--gray);letter-spacing:.6px;text-transform:uppercase;margin-bottom:7px}
+.field{margin-bottom:18px;position:relative}
+select,textarea{width:100%;border:1.6px solid var(--border);border-radius:10px;padding:13px 14px;font-family:'Univers','Open Sans',Arial,sans-serif;font-size:15px;color:#16202b;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s}
+select{-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23005EB8' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+select:disabled{background-color:#f3f5f8;color:var(--gray-lt);cursor:not-allowed}
+select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,94,184,.13)}
+textarea{resize:vertical;min-height:72px;line-height:1.5}
+
+.btn{border:none;border-radius:10px;font-family:'Univers','Open Sans',Arial,sans-serif;font-weight:800;cursor:pointer;transition:all .18s;font-size:16px}
+.btn-primary{background:var(--blue);color:#fff;padding:15px 34px;box-shadow:0 4px 14px rgba(0,94,184,.26)}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,94,184,.42)}
+.btn-primary:disabled{background:var(--gray-lt);box-shadow:none;cursor:not-allowed;transform:none}
+.btn-ghost{background:#fff;border:2px solid var(--border);color:var(--gray);padding:13px 24px;font-size:15px}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn-dark{background:var(--blue-dark);color:#fff;padding:14px 26px;display:inline-flex;align-items:center;gap:9px;box-shadow:0 6px 18px rgba(0,56,101,.32)}
+.btn-dark:hover{transform:translateY(-2px)}
+.nav-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:24px;flex-wrap:wrap}
+
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tag{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:6px 14px;font-size:12.5px;font-weight:700}
+.tag-role{background:rgba(0,94,184,.1);color:var(--blue);border:1px solid rgba(0,94,184,.25)}
+.tag-area{background:rgba(0,178,169,.12);color:#00827b;border:1px solid rgba(0,178,169,.3)}
+
+.hub-grid{display:grid;gap:14px}
+.hub-card{background:#fff;border:1.6px solid var(--border);border-radius:15px;padding:20px;cursor:pointer;transition:all .2s;display:flex;gap:16px;align-items:center;text-align:left;position:relative;overflow:hidden}
+.hub-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue);transition:width .2s}
+.hub-card:hover{box-shadow:0 12px 30px rgba(12,38,68,.14);transform:translateY(-3px)}
+.hub-card:hover::after{width:9px}
+.hub-card:nth-child(2)::after{background:var(--teal)}
+.hub-card:nth-child(3)::after{background:var(--orange)}
+.hub-ico{flex-shrink:0;width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:rgba(0,94,184,.1);color:var(--blue)}
+.hub-card:nth-child(2) .hub-ico{background:rgba(0,178,169,.12);color:var(--teal)}
+.hub-card:nth-child(3) .hub-ico{background:rgba(237,139,0,.12);color:var(--orange)}
+.hub-ico svg{width:26px;height:26px}
+.hub-card h3{font-size:17.5px;font-weight:800;color:var(--blue-dark);margin-bottom:3px}
+.hub-card p{font-size:13.5px;color:var(--gray);line-height:1.5}
+.hub-go{margin-left:auto;color:var(--gray-lt);font-size:26px;font-weight:700;flex-shrink:0}
+
+.expect-list{display:grid;gap:11px}
+.expect-item{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:15px 16px;transition:transform .15s}
+.expect-item:hover{transform:translateX(3px)}
+.expect-dot{flex-shrink:0;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--blue-700));color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;font-family:'Univers','Open Sans',Arial,sans-serif}
+.expect-item.area .expect-dot{background:linear-gradient(135deg,var(--teal),#008c85)}
+.expect-item h4{font-size:15px;font-weight:800;color:var(--blue-dark);margin-bottom:3px}
+.expect-item p{font-size:13.5px;color:var(--gray);line-height:1.55}
+.area-flag{font-size:10px;font-weight:800;color:#00827b;background:rgba(0,178,169,.13);padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;margin-left:8px}
+
+.q-list{display:grid;gap:11px}
+.q-item{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:16px 17px;cursor:pointer;transition:all .18s;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.q-item:hover{border-color:var(--blue);box-shadow:0 5px 16px rgba(12,38,68,.1);transform:translateY(-2px)}
+.q-item .q-text{font-size:14.5px;font-weight:600;color:#16202b;line-height:1.45}
+.q-comp{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:3px 9px;border-radius:20px;white-space:nowrap;margin-top:7px;display:inline-block}
+.c-lid{background:rgba(0,94,184,.12);color:var(--blue)} .c-apr{background:rgba(0,178,169,.16);color:#00827b} .c-res{background:rgba(237,139,0,.16);color:#b66a00}
+.q-done{color:var(--green);font-weight:800;font-size:20px;flex-shrink:0}
+.q-arrow{color:var(--gray-lt);font-size:24px;flex-shrink:0;font-weight:700}
+
+.star-field{margin-bottom:15px}
+.star-field .fl-head{display:flex;align-items:center;margin-bottom:5px}
+.star-field .letter{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border-radius:7px;background:var(--blue-dark);color:#fff;font-weight:800;font-size:13px;margin-right:9px;font-family:'Univers','Open Sans',Arial,sans-serif}
+.star-field .fl-name{font-size:14px;font-weight:800;color:var(--blue-dark)}
+.star-field .fl-q{font-size:12.5px;color:var(--gray);margin:0 0 7px 34px}
+.ej-toggle{background:rgba(255,199,44,.16);border:1px solid var(--yellow);color:#8a6500;font-weight:700;font-size:12.5px;cursor:pointer;font-family:'Univers','Open Sans',Arial,sans-serif;padding:8px 13px;border-radius:8px;margin-bottom:14px;display:inline-block}
+.ej-box{background:#fffae6;border:1.5px solid var(--yellow);border-radius:10px;padding:14px 16px;margin-bottom:16px;font-size:13.5px;color:#5b4a10;line-height:1.65;display:none}
+.ej-box.show{display:block;animation:rise .25s ease}
+.ej-box strong{color:#946c00}
+.preview-live{background:linear-gradient(135deg,#eef4fa,#e8f5f3);border:1.5px solid rgba(0,94,184,.18);border-radius:11px;padding:16px 17px;margin-top:8px}
+.preview-live .pl-label{font-size:11px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.preview-live .pl-text{font-size:14.5px;color:#26323d;line-height:1.65}
+.pl-empty{color:var(--gray-lt);font-style:italic}
+
+.progress{margin-bottom:20px}
+.progress-top{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;font-weight:700;color:var(--gray);margin-bottom:7px}
+.progress-track{height:9px;background:#e3e9ef;border-radius:20px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:20px;transition:width .4s ease}
+.quiz-q{font-size:18px;font-weight:700;color:var(--blue-dark);line-height:1.45;margin-bottom:8px}
+.quiz-instr{font-size:13px;color:var(--gray);margin-bottom:16px}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;background:#fff;border:1.6px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer;font-family:'Univers','Open Sans',Arial,sans-serif;font-size:14px;color:#16202b;line-height:1.55;transition:all .15s;display:flex;gap:12px;align-items:flex-start}
+.opt:hover:not(.locked){border-color:var(--blue);background:#f6faff;transform:translateY(-1px)}
+.opt .opt-letter{flex-shrink:0;width:27px;height:27px;border-radius:50%;border:1.6px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--gray);transition:all .15s}
+.opt.locked{cursor:default}
+.opt.best{border-color:var(--green);background:#f1f8ed}
+.opt.best .opt-letter{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.wrong{border-color:var(--red);background:#fdf0f1}
+.opt.wrong .opt-letter{background:var(--red);color:#fff;border-color:var(--red)}
+.feedback{background:#eef4fa;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:15px 17px;margin-top:17px;font-size:14px;color:#33414f;line-height:1.6;display:none}
+.feedback.show{display:block;animation:rise .25s ease}
+.feedback strong{color:var(--blue-dark)}
+.feedback .pts{display:inline-block;background:var(--green);color:#fff;font-weight:800;font-size:12px;padding:2px 10px;border-radius:20px;margin-bottom:8px}
+.feedback .miss{color:var(--orange);font-weight:700}
+
+.res-comp{margin-bottom:22px}
+.res-comp-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.res-comp-name{font-size:15.5px;font-weight:800;color:var(--blue-dark)}
+.res-comp-pct{font-family:'Univers','Open Sans',Arial,sans-serif;font-size:26px;font-weight:800}
+.res-bar{height:18px;background:#e3e9ef;border-radius:20px;overflow:hidden}
+.res-bar-fill{height:100%;border-radius:20px;width:0;transition:width .9s cubic-bezier(.2,.85,.25,1)}
+.res-tag{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-top:6px;display:inline-block}
+.lvl-fuerte{color:var(--green)} .bar-fuerte{background:linear-gradient(90deg,var(--green),#7cc24a)}
+.lvl-medio{color:var(--yellow2)} .bar-medio{background:linear-gradient(90deg,var(--yellow2),var(--yellow))}
+.lvl-mejora{color:var(--orange)} .bar-mejora{background:linear-gradient(90deg,var(--orange),#f7ab33)}
+.fb-list{background:linear-gradient(135deg,#fff,#f4f8fc);border:1.5px solid var(--border);border-radius:13px;padding:18px 20px;margin-top:8px}
+.fb-list h4{font-size:14px;font-weight:800;color:var(--blue-dark);margin-bottom:11px;text-transform:uppercase;letter-spacing:.5px;font-family:'Univers','Open Sans',Arial,sans-serif}
+.fb-line{font-size:14px;color:#33414f;line-height:1.6;padding:6px 0 6px 22px;position:relative}
+.fb-line::before{content:'›';position:absolute;left:2px;color:var(--blue);font-weight:800;font-size:19px;line-height:1.15}
+.fb-line strong{color:var(--blue-dark)}
+.muted{color:var(--gray);font-size:12.5px}
+.foot-energy{text-align:center;margin-top:26px;color:var(--gray-lt);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+
+#print-area{display:none}
+@media print{
+  @page{size:Letter;margin:0.7in 0.65in}
+  body{background:#fff}body::before,body::after{display:none}
+  header,main{display:none !important}
+  #print-area{display:block !important}
+  .pa-head{border-bottom:3px solid var(--blue);padding-bottom:10px;margin-bottom:18px}
+  .pa-logo{font-family:'Univers','Open Sans',Arial,sans-serif;font-weight:800;letter-spacing:3px;color:var(--blue-dark);font-size:15px}
+  .pa-title{font-family:'Univers','Open Sans',Arial,sans-serif;font-size:25px;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin-top:4px}
+  .pa-role{font-size:12px;color:var(--gray);letter-spacing:.8px;text-transform:uppercase}
+  .pa-item{margin-bottom:18px;break-inside:avoid}
+  .pa-q{font-size:14px;font-weight:800;color:var(--blue-dark);margin-bottom:6px}
+  .pa-narr{font-size:13px;color:#222;line-height:1.6;margin-bottom:8px}
+  .pa-parts{font-size:11.5px;color:#555;line-height:1.5}.pa-parts b{color:var(--blue-dark)}
+  .pa-foot{margin-top:24px;border-top:1px solid #ccc;padding-top:8px;font-size:10.5px;color:#888;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="data:image/jpeg;base64,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" alt="Eaton">
+    <div class="brand-sub"><strong>Prepárate para tu entrevista</strong>Práctica con el método STAR</div>
+  </div>
+  <div class="head-right">
+    <div class="head-sel" id="headSel">
+      <select id="headRole" onchange="setRole(this.value)"></select>
+      <select id="headArea" onchange="setArea(this.value)"></select>
+    </div>
+    <div class="privacy-pill">Sin almacenamiento</div>
+  </div>
+</header>
+
+<main>
+
+<div class="screen active" id="s-start">
+  <div class="privacy-note"><strong>Esta herramienta es solo para práctica.</strong> Ninguna de tus respuestas se guarda o comparte. Todo se procesa en tu dispositivo y se borra al recargar la página.</div>
+  <div class="card card-hero stagger">
+    <div class="kicker">Tú haces que las cosas funcionen</div>
+    <h1 class="title">Practica para tu entrevista</h1>
+    <p class="lead">Llega con confianza: qué esperar, cómo contar tus historias y un auto-chequeo rápido. Todo adaptado a tu tipo de puesto y a tu área.</p>
+    <div class="field">
+      <label class="fld" for="startRole">¿Para qué tipo de puesto te preparas?</label>
+      <select id="startRole" onchange="onStartRole()"><option value="">Elige tu rol…</option></select>
+    </div>
+    <div class="field">
+      <label class="fld" for="startArea">¿En qué área trabajas o quieres trabajar?</label>
+      <select id="startArea" onchange="checkStart()" disabled><option value="">Primero elige tu rol…</option></select>
+    </div>
+    <div class="nav-row" style="justify-content:flex-end">
+      <button class="btn btn-primary" id="startBtn" disabled onclick="start()">Comenzar →</button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="s-hub">
+  <div class="privacy-note"><strong>Solo práctica.</strong> Nada de lo que escribas aquí se guarda ni se envía.</div>
+  <div class="tags"><span class="tag tag-role" id="tagRole"></span><span class="tag tag-area" id="tagArea"></span></div>
+  <div class="hub-grid stagger">
+    <button class="hub-card" onclick="go('s-expect')">
+      <div class="hub-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div><h3>Qué esperar</h3><p>En un minuto: qué pasa en la entrevista, qué llevar y cómo presentarte.</p></div>
+      <span class="hub-go">›</span>
+    </button>
+    <button class="hub-card" onclick="go('s-star')">
+      <div class="hub-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <div><h3>Tus historias en formato STAR</h3><p>Arma tus respuestas paso a paso y guárdalas en PDF para repasar.</p></div>
+      <span class="hub-go">›</span>
+    </button>
+    <button class="hub-card" onclick="startQuiz()">
+      <div class="hub-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+      <div><h3>Auto-chequeo rápido</h3><p>Pon a prueba tus respuestas y recibe un puntaje en 3 competencias.</p></div>
+      <span class="hub-go">›</span>
+    </button>
+  </div>
+</div>
+
+<div class="screen" id="s-expect">
+  <div class="card">
+    <div class="sec-title">Qué esperar</div>
+    <div class="sec-hint">Una entrevista es una conversación para conocerte. No hay respuestas perfectas: sé honesto y da ejemplos reales.</div>
+    <div class="expect-list stagger" id="expectList"></div>
+    <div class="nav-row"><button class="btn btn-ghost" onclick="go('s-hub')">← Volver</button></div>
+  </div>
+</div>
+
+<div class="screen" id="s-star">
+  <div class="card">
+    <div class="sec-title">Tus historias en formato STAR</div>
+    <div class="sec-hint"><strong>STAR</strong> = Situación, Tarea, Acción, Resultado. Es el orden para contar una historia clara. Elige una pregunta y ármala paso a paso.</div>
+    <div class="q-list stagger" id="starList"></div>
+    <div class="nav-row">
+      <button class="btn btn-ghost" onclick="go('s-hub')">← Volver</button>
+      <button class="btn btn-dark" onclick="printStar()">Guardar mis respuestas (PDF)</button>
+    </div>
+    <p class="muted" style="text-align:center;margin-top:14px">Para guardar en PDF: presiona el botón y elige <strong>“Guardar como PDF”</strong>. En celular: menú <strong>Compartir → Imprimir</strong>.</p>
+  </div>
+</div>
+
+<div class="screen" id="s-star-edit">
+  <div class="card">
+    <div id="seComp" style="margin-bottom:8px"></div>
+    <div class="quiz-q" id="seQ"></div>
+    <button class="ej-toggle" onclick="toggleEj()">Ver un ejemplo para tu área</button>
+    <div class="ej-box" id="seEj"></div>
+    <div id="seFields"></div>
+    <div class="preview-live">
+      <div class="pl-label">Así suena tu respuesta completa</div>
+      <div class="pl-text" id="sePreview"><span class="pl-empty">Llena los campos de arriba y aquí verás tu historia armada.</span></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn btn-ghost" onclick="go('s-star')">← Volver a la lista</button>
+      <button class="btn btn-primary" onclick="saveStar()">Guardar respuesta</button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="s-quiz">
+  <div class="card">
+    <div class="progress">
+      <div class="progress-top"><span id="qProgLabel">Pregunta 1</span><span id="qProgComp"></span></div>
+      <div class="progress-track"><div class="progress-fill" id="qProgFill"></div></div>
+    </div>
+    <div class="quiz-q" id="quizQ"></div>
+    <div class="quiz-instr">Elige la respuesta más fuerte para esta pregunta de entrevista.</div>
+    <div class="opts" id="quizOpts"></div>
+    <div class="feedback" id="quizFb"></div>
+    <div class="nav-row">
+      <button class="btn btn-ghost" onclick="go('s-hub')">Salir</button>
+      <button class="btn btn-primary" id="quizNext" style="display:none" onclick="nextQ()">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="s-results">
+  <div class="card">
+    <div class="sec-title">Tu resultado</div>
+    <div class="sec-hint">Esto es una guía de práctica, no una calificación oficial. Úsalo para saber qué reforzar antes de tu entrevista.</div>
+    <div id="resBars"></div>
+    <div class="fb-list"><h4>Consejos para ti</h4><div id="resFeedback"></div></div>
+    <div class="nav-row">
+      <button class="btn btn-ghost" onclick="go('s-hub')">← Menú</button>
+      <button class="btn btn-primary" onclick="startQuiz()">Repetir auto-chequeo</button>
+    </div>
+    <div class="foot-energy">Eaton · Hacemos que lo que importa funcione</div>
+  </div>
+</div>
+
+</main>
+<div id="print-area"></div>
+
+<script>
+const COMP={lid:'Liderazgo / Trabajo en equipo',apr:'Aprendizaje',res:'Resultados'};
+const CCLASS={lid:'c-lid',apr:'c-apr',res:'c-res'};
+const COMP_OF={ayudar:'lid',conflicto:'lid',aprender:'apr',error:'apr',mejora:'res',meta:'res'};
+const BUILDER_THEMES=['ayudar','aprender','mejora'];
+const QUIZ_THEMES=['ayudar','conflicto','aprender','error','mejora','meta'];
+
+const PROMPTS={
+  oper:{
+    ayudar:'Cuéntame de una vez que ayudaste a un compañero en tu trabajo de {dom}.',
+    conflicto:'Háblame de una vez que tuviste una diferencia con un compañero o tu jefe y cómo la resolviste.',
+    aprender:'Cuéntame de una vez que tuviste que aprender algo nuevo en tu trabajo de {dom}.',
+    error:'Háblame de un error que cometiste en el trabajo y qué hiciste para que no se repitiera.',
+    mejora:'Cuéntame de una vez que ayudaste a que algo saliera mejor en tu área de {dom}.',
+    meta:'Háblame de una vez que ayudaste a cumplir la meta de tu turno o equipo.'},
+  ajr:{
+    ayudar:'Cuéntame de una vez que apoyaste a tu equipo en una tarea del día a día en {dom}.',
+    conflicto:'Háblame de un desacuerdo en un equipo (de trabajo o de la escuela) y cómo lo manejaste.',
+    aprender:'Cuéntame de una vez que tuviste que aprender rápido algo nuevo para tu trabajo en {dom}.',
+    error:'Háblame de un error que cometiste al empezar y qué aprendiste de él.',
+    mejora:'Cuéntame de una vez que propusiste o ayudaste a mejorar una tarea cotidiana en {dom}.',
+    meta:'Háblame de una entrega o meta que tenías que cumplir a tiempo y cómo lo lograste.'},
+  asr:{
+    ayudar:'Cuéntame de una vez que ayudaste a otra persona o área a resolver un problema en {dom}.',
+    conflicto:'Háblame de una diferencia con otra área y cómo llegaron a un acuerdo.',
+    aprender:'Cuéntame de una metodología o herramienta nueva que aprendiste y aplicaste en {dom}.',
+    error:'Háblame de un análisis o algo que no salió como esperabas y qué aprendiste.',
+    mejora:'Cuéntame de una mejora que implementaste en {dom} y el impacto que tuvo, con datos.',
+    meta:'Háblame de un objetivo del área que ayudaste a alcanzar bajo presión.'},
+  sup:{
+    ayudar:'Cuéntame de una vez que desarrollaste o ayudaste a mejorar a alguien de tu equipo en {dom}.',
+    conflicto:'Háblame de un conflicto dentro de tu equipo y cómo lo manejaste como líder.',
+    aprender:'Cuéntame de un cambio o método nuevo que tu equipo tuvo que aprender y cómo lo lideraste.',
+    error:'Háblame de una decisión de liderazgo que no salió bien y qué aprendiste.',
+    mejora:'Cuéntame de una mejora que impulsaste con tu equipo en {dom} y su resultado.',
+    meta:'Háblame de una meta difícil que tu equipo cumplió gracias a tu liderazgo.'},
+  ger:{
+    ayudar:'Cuéntame de cómo desarrollaste a un líder o fortaleciste a tu equipo en {dom}.',
+    conflicto:'Háblame de cómo alineaste a áreas o stakeholders con intereses distintos.',
+    aprender:'Cuéntame de un cambio de mercado, tecnología o estrategia que tuviste que liderar en {dom}.',
+    error:'Háblame de una decisión estratégica que no salió como esperabas y qué aprendiste.',
+    mejora:'Cuéntame de una decisión o iniciativa estratégica que tomaste y su impacto en el negocio.',
+    meta:'Háblame de un objetivo importante del área o del sitio que lideraste para cumplir.'}
+};
+const WHY='La respuesta más fuerte cuenta una historia completa con las cuatro partes del método STAR: la Situación, la Tarea, la Acción que hiciste tú y, sobre todo, el Resultado. Las demás se quedan en buenas intenciones o no dicen cómo terminó.';
+
+const DISTR={
+  ayudar:[{t:'Que siempre estoy dispuesto a ayudar a los demás.',p:1},{t:'Que un compañero tenía un problema en el trabajo.',p:2},{t:'Que me acerqué a ayudarlo cuando lo vi en apuros.',p:3}],
+  conflicto:[{t:'Que yo casi nunca tengo conflictos con nadie.',p:1},{t:'Que una vez tuve una diferencia con un compañero.',p:2},{t:'Que hablé con la persona para tratar de arreglarlo.',p:3}],
+  aprender:[{t:'Que aprendo rápido y me gusta lo nuevo.',p:1},{t:'Que me pidieron aprender algo que no conocía.',p:2},{t:'Que estudié y practiqué para aprenderlo.',p:3}],
+  error:[{t:'Que casi nunca cometo errores.',p:1},{t:'Que una vez tuve un error por algo que no dependía de mí.',p:2},{t:'Que reconocí el error en cuanto pasó.',p:3}],
+  mejora:[{t:'Que soy una persona muy enfocada en mejorar las cosas.',p:1},{t:'Que en mi trabajo siempre hay cosas que mejorar.',p:2},{t:'Que cambié la forma de hacer una tarea para que saliera mejor.',p:3}],
+  meta:[{t:'Que siempre soy responsable y cumplo con lo mío.',p:1},{t:'Que el equipo tenía una meta difícil ese mes.',p:2},{t:'Que me esforcé mucho para ayudar a cumplirla.',p:3}]
+};
+const MISS={5:'¡Tu respuesta tiene las cuatro partes del STAR!',3:'A tu respuesta le faltó cerrar con el Resultado: cómo terminó la historia.',2:'Tu respuesta cuenta la situación, pero falta la Acción concreta y el Resultado.',1:'Esa respuesta es una buena intención, pero no cuenta una historia con Situación, Acción y Resultado.'};
+
+const TMPL={
+  oper:{
+    ayudar:'Un compañero {x}. Cuando terminé mi parte, me acerqué y le ayudé hasta que se puso al día. Entre los dos evitamos que se atrasara el trabajo.',
+    conflicto:'Tuve una diferencia con un compañero por {x}. En vez de pelear, le pedí hablar en el descanso y acordamos una forma justa por escrito. Dejó de haber roces.',
+    aprender:'Tuve que aprender {x} sin frenar mi turno. Le pedí al técnico que me mostrara, tomé notas y practiqué. En poco tiempo ya lo hacía bien solo.',
+    error:'Una vez {x}. Lo reconocí de inmediato y avisé. Después empecé a revisar un punto extra para que no se repitiera, y no volvió a pasar.',
+    mejora:'Noté que {x}. Quería que mi parte saliera mejor, así que ordené mi trabajo y avisé rápido de los problemas. Con eso bajó el problema y cumplimos la meta del turno.',
+    meta:'Teníamos que cumplir {x} y veníamos atrasados. Mi parte era no frenar mi estación, así que preparé mi material y avisé rápido de las fallas. Cumplimos a tiempo.'},
+  ajr:{
+    ayudar:'Un compañero {x} y yo, aunque era nuevo, ya lo había visto antes. Le compartí lo que sabía y lo apoyé. Sacó su parte a tiempo.',
+    conflicto:'Hubo un desacuerdo en mi equipo por {x}. Propuse escuchar a cada quien y repartir las tareas por escrito. El equipo volvió a avanzar sin tensión.',
+    aprender:'Recién entré y tuve que aprender {x} rápido. Pregunté mucho, tomé notas y practiqué por mi cuenta. A las pocas semanas ya lo manejaba bien.',
+    error:'Al principio {x}. En vez de esconderlo, lo dije y pregunté cómo evitarlo. Cambié mi forma de revisar y ya no me volvió a pasar.',
+    mejora:'Me di cuenta de que {x}. Como quería aportar, pregunté y propuse un pequeño ajuste en mi tarea. Lo aplicamos y se notó la mejora.',
+    meta:'El equipo tenía que cumplir {x} y yo era nuevo. Me organicé, pedí prioridades claras y entregué mi parte a tiempo. Logramos la meta juntos.'},
+  asr:{
+    ayudar:'Un compañero {x}. Le ayudé a analizar el caso y le mostré una forma más simple de resolverlo. Lo resolvió y de paso su proceso quedó mejor.',
+    conflicto:'Tuve una diferencia con otra área por {x}. Llevé datos en vez de opiniones y buscamos una solución común. Llegamos a un acuerdo que funcionó para ambos.',
+    aprender:'Tuve que aprender {x} para un proyecto. Lo estudié, lo probé con datos reales y lo validé con un experto. Lo dominé y lo apliqué con buen resultado.',
+    error:'Una vez {x}. Analicé por qué pasó, ajusté el proceso con esa lección y lo documenté para el equipo. No se volvió a repetir.',
+    mejora:'Detecté con datos que {x}. Mi tarea era reducirlo, así que analicé la causa raíz y propuse un cambio en el proceso. El indicador mejoró de forma medible en pocas semanas.',
+    meta:'El área tenía que cumplir {x} y había riesgo de no llegar. Analicé dónde se perdía tiempo, ajusté el proceso y di seguimiento con datos. Cumplimos la meta.'},
+  sup:{
+    ayudar:'Una persona de mi equipo {x}. La acompañé, le di una guía clara y la seguí de cerca. Recuperó el ritmo y ganó confianza.',
+    conflicto:'Dos personas de mi equipo chocaban por {x}. Hablé con cada una, aclaré las expectativas y acordamos reglas claras. Bajó la tensión y mejoró el turno.',
+    aprender:'Mi equipo tuvo que aprender {x}. Lo aprendí primero yo y luego capacité por partes. Migramos sin afectar la meta del turno.',
+    error:'Como líder, una vez {x}. Asumí la responsabilidad con mi equipo, ajustamos el procedimiento y reforcé el punto débil. El resultado mejoró.',
+    mejora:'Vi que en mi equipo {x}. Reorganicé el trabajo, capacité en el punto débil y di seguimiento diario. Redujimos el problema y sostuvimos la meta.',
+    meta:'Mi equipo debía cumplir {x} con recursos ajustados. Reorganicé los turnos, prioricé lo crítico y reconocí el esfuerzo. Cumplimos sin afectar la seguridad.'},
+  ger:{
+    ayudar:'Una persona clave de mi equipo {x}. La acompañé con coaching y un marco claro para decidir, y le di más responsabilidad poco a poco. Creció en su rol y hoy lidera con autonomía.',
+    conflicto:'Dos áreas estaban en desacuerdo por {x}. Las alineé con un objetivo común y datos claros. Acordamos una solución que ambas aceptaron.',
+    aprender:'El área tuvo que aprender {x}. Me formé primero, definí un plan por fases y preparé al equipo. Lo adoptamos antes de que se volviera un problema.',
+    error:'Una vez {x}. Asumí el resultado, ajusté el plan y saqué una lección que hoy aplico en cada decisión importante.',
+    mejora:'Identifiqué que {x}, y eso afectaba los resultados del negocio. Definí un plan, alineé al equipo y di seguimiento. Recuperamos el indicador objetivo sin afectar el servicio.',
+    meta:'El sitio debía cumplir {x} y estábamos en riesgo. Redefiní prioridades, alineé a las áreas y di seguimiento cercano. Cerramos cumpliendo la meta.'}
+};
+
+const ROLES={
+  oper:{label:'Operador / Técnico',expect:[
+    ['Llega temprano','Llega 10–15 minutos antes. Lleva tu identificación y, si lo tienes, tu CV impreso.'],
+    ['Hablarán de tu experiencia','Te preguntarán por tus trabajos: qué hacías cada día y en qué turnos.'],
+    ['La seguridad importa mucho','Es normal que pregunten cómo cuidas tu seguridad y la de tus compañeros. Da ejemplos reales.'],
+    ['No tienes que saberlo todo','Si no sabes algo, dilo con honestidad y muestra que aprendes rápido.'],
+    ['Cuenta historias cortas','Responde con un ejemplo: qué pasó, qué hiciste y cómo salió.'],
+    ['Pregunta tú también','Al final puedes preguntar por el turno, el equipo o la capacitación.']]},
+  ajr:{label:'Analista Junior (recién egresado)',expect:[
+    ['Está bien tener poca experiencia','Valoran tu actitud y tus ganas de aprender más que los años de trabajo.'],
+    ['Usa ejemplos de la escuela o prácticas','Proyectos, tesis o trabajos en equipo cuentan como experiencia válida.'],
+    ['Te preguntarán cómo aprendes','Quieren ver que te pones al día rápido y pides ayuda cuando hace falta.'],
+    ['Conoce lo básico del puesto','Repasa los conceptos clave de tu carrera y, si puedes, qué hace Eaton.'],
+    ['Sé honesto con lo que no sabes','Decir “eso no lo domino, pero lo aprendería así…” suma más que inventar.'],
+    ['Prepara 1–2 preguntas','Pregunta cómo se capacita a alguien nuevo o cómo se mide el éxito en el puesto.']]},
+  asr:{label:'Analista Senior',expect:[
+    ['Esperan resolución de problemas','Lleva ejemplos donde analizaste algo complejo y propusiste una solución.'],
+    ['Mejora continua','Quieren ver que detectas oportunidades y mejoras procesos, con datos.'],
+    ['Trabajo entre áreas','Es común que pregunten cómo coordinaste con producción, calidad u otras áreas.'],
+    ['Decisiones con datos','Prepara ejemplos donde usaste información para decidir y mediste el impacto.'],
+    ['Sé concreto con números','Resultados con cifras hacen tus respuestas mucho más sólidas.'],
+    ['Muestra criterio','No solo qué hiciste, también por qué lo decidiste así.']]},
+  sup:{label:'Líder de equipo / Supervisor',expect:[
+    ['Esperan ejemplos de liderazgo','Cómo guías, motivas y desarrollas a tu equipo, no solo cómo haces tareas.'],
+    ['Manejo de conflictos','Prepárate para una situación difícil con alguien del equipo y cómo la resolviste.'],
+    ['Priorización y KPIs','Quieren ver que decides qué es primero bajo presión y conoces tus indicadores.'],
+    ['Decisiones bajo presión','Ten ejemplos de turnos o días difíciles donde decidiste rápido.'],
+    ['Resultados a través de otros','Tu logro es que el equipo cumpla. Cuenta cómo lo hiciste posible.'],
+    ['Conoce tus números','Producción, calidad, seguridad, ausentismo: ten ejemplos con cifras.']]},
+  ger:{label:'Manager / Gerencia',expect:[
+    ['Esperan visión estratégica','Cómo conectas tu área con los objetivos del negocio.'],
+    ['Decisiones de alto impacto','Ejemplos donde decidiste con información incompleta y asumiste el resultado.'],
+    ['Gestión de personas y stakeholders','Cómo desarrollas a tu equipo y alineas a áreas o direcciones con intereses distintos.'],
+    ['Liderazgo organizacional','Cómo formas líderes y construyes cultura.'],
+    ['Resultados de negocio','Habla en términos de costos, eficiencia, retención o crecimiento, con cifras.'],
+    ['Trae preguntas de alto nivel','Sobre estrategia del sitio, prioridades del negocio o retos del equipo.']]}
+};
+
+const ROLE_AREAS={
+  oper:['manufactura','calidad','mantenimiento','ventas_cs','rh','ingenieria','admin','logistica','compras'],
+  ajr:['manufactura','calidad','mantenimiento','ventas_cs','rh','ingenieria','admin','logistica','compras'],
+  asr:['manufactura','calidad','mantenimiento','ventas_cs','rh','ingenieria','admin','cadena'],
+  sup:['manufactura','calidad','mantenimiento','ventas_cs','rh','ingenieria','admin','cadena'],
+  ger:['manufactura','calidad','mantenimiento','ventas_cs','rh','ingenieria','admin','cadena']
+};
+
+const AREAS={
+  manufactura:{label:'Manufactura / Producción',dom:'manufactura',
+    tip:['En manufactura','Te pueden preguntar por seguridad, cumplimiento de instrucciones y cómo cuidas la calidad en tu estación. Ten un ejemplo listo.'],
+    f:{ayudar:'se atoró con la operación de su máquina',conflicto:'el reparto de tareas en la línea',aprender:'a operar una máquina nueva de la línea',error:'un descuido mío causó un paro en la línea',mejora:'se repetían los paros en la línea',meta:'la meta de producción del turno'}},
+  calidad:{label:'Calidad',dom:'calidad',
+    tip:['En calidad','Pueden preguntarte por normas como ISO o IATF y por cómo detectas y reportas un defecto. Lleva un ejemplo concreto.'],
+    f:{ayudar:'se atoró con una inspección complicada',conflicto:'los criterios para aceptar o rechazar una pieza',aprender:'a usar un nuevo formato de inspección',error:'se me pasó un defecto que llegó al siguiente proceso',mejora:'salían demasiadas piezas con defecto',meta:'el nivel de calidad exigido por el cliente'}},
+  mantenimiento:{label:'Mantenimiento',dom:'mantenimiento',
+    tip:['En mantenimiento','Pueden preguntarte por seguridad, mantenimiento preventivo y cómo resolviste una falla. Prepara un caso.'],
+    f:{ayudar:'no lograba resolver una falla del equipo',conflicto:'la prioridad de las reparaciones',aprender:'a dar mantenimiento a un equipo nuevo',error:'no se detectó a tiempo una falla y se paró la línea',mejora:'las mismas fallas se repetían por falta de mantenimiento',meta:'la meta de disponibilidad de los equipos'}},
+  ventas_cs:{label:'Ventas y Atención a Clientes',dom:'atención a clientes',
+    tip:['En atención a clientes','Pueden preguntarte por un cliente difícil y cómo lo resolviste. Ten esa historia lista.'],
+    f:{ayudar:'no podía con un cliente molesto',conflicto:'la prioridad de los pedidos',aprender:'a usar un nuevo sistema de pedidos y clientes',error:'le di una información equivocada a un cliente',mejora:'los clientes esperaban demasiado por una respuesta',meta:'el tiempo de respuesta acordado con los clientes'}},
+  rh:{label:'Recursos Humanos',dom:'recursos humanos',
+    tip:['En recursos humanos','Pueden preguntarte por confidencialidad y por cómo manejaste una situación sensible con personas. Prepara un ejemplo.'],
+    f:{ayudar:'se atrasó con un proceso de personal',conflicto:'cómo priorizar las vacantes',aprender:'a usar un nuevo sistema de personal',error:'hubo un error en un dato de un trámite de personal',mejora:'el proceso de contratación se atrasaba mucho',meta:'la meta de vacantes cubiertas del mes'}},
+  ingenieria:{label:'Ingeniería',dom:'ingeniería',
+    tip:['En ingeniería','Pueden preguntarte por un proyecto o una mejora técnica que hiciste. Lleva un ejemplo con resultados.'],
+    f:{ayudar:'se atoró con un cálculo o un plano',conflicto:'la solución técnica a usar',aprender:'a usar una nueva herramienta de diseño o análisis',error:'un cálculo tenía un error que afectó el avance',mejora:'un proceso tenía pasos de más que costaban tiempo',meta:'la fecha de entrega de un proyecto'}},
+  admin:{label:'Administración y Contabilidad',dom:'administración',
+    tip:['En administración y contabilidad','Pueden preguntarte por orden, exactitud y cumplimiento de fechas de cierre. Ten un ejemplo.'],
+    f:{ayudar:'se atrasó con un reporte o una conciliación',conflicto:'la forma de registrar un gasto',aprender:'a usar un nuevo sistema contable',error:'se registró mal una cifra en un reporte',mejora:'el cierre del mes se atrasaba siempre',meta:'el cierre contable del mes a tiempo'}},
+  logistica:{label:'Almacén / Logística / Embarques',dom:'almacén y embarques',
+    tip:['En almacén y logística','Pueden preguntarte por orden, control de inventarios, seguridad y entregas a tiempo. Prepara un caso concreto.'],
+    f:{ayudar:'no se daba abasto con la carga del almacén',conflicto:'el orden de los embarques del día',aprender:'a usar un nuevo sistema de inventario',error:'se envió un material equivocado en un embarque',mejora:'el inventario no cuadraba seguido',meta:'la entrega de todos los embarques del día'}},
+  compras:{label:'Compras / Planeación de Materiales',dom:'compras y planeación',
+    tip:['En compras y planeación','Pueden preguntarte por el trato con proveedores, el control de materiales y cómo evitas paros por falta de material. Lleva un ejemplo.'],
+    f:{ayudar:'se atrasó con una orden de compra urgente',conflicto:'la prioridad de las compras o un tema con un proveedor',aprender:'a usar un nuevo sistema de compras y planeación',error:'ordené mal una cantidad de material',mejora:'faltaba material a tiempo y eso frenaba la producción',meta:'el abasto de material a tiempo para la producción'}},
+  cadena:{label:'Cadena de Suministro',dom:'cadena de suministro',
+    tip:['En cadena de suministro','Pueden preguntarte por planeación, proveedores, inventarios, costos y nivel de servicio. Ten ejemplos con indicadores.'],
+    f:{ayudar:'se atoró con una parte difícil de la planeación',conflicto:'la prioridad entre costo, inventario y nivel de servicio',aprender:'a usar un nuevo sistema de planeación de la cadena',error:'una mala planeación dejó material parado o faltante',mejora:'el inventario y los costos de la cadena estaban altos',meta:'el nivel de servicio y el costo objetivo de la cadena'}}
+};
+
+let role=null, area=null, starAns={}, editTheme=null;
+let quiz={i:0,items:[],picked:[]};
+
+function rolesOptions(){return Object.keys(ROLES).map(k=>`<option value="${k}">${ROLES[k].label}</option>`).join('');}
+function areaOptions(r){return ROLE_AREAS[r].map(k=>`<option value="${k}">${AREAS[k].label}</option>`).join('');}
+function fillRoles(){
+  document.getElementById('startRole').innerHTML='<option value="">Elige tu rol…</option>'+rolesOptions();
+  document.getElementById('headRole').innerHTML=rolesOptions();
+}
+fillRoles();
+function onStartRole(){
+  const r=document.getElementById('startRole').value, sa=document.getElementById('startArea');
+  if(r){sa.innerHTML='<option value="">Elige tu área…</option>'+areaOptions(r);sa.disabled=false;}
+  else{sa.innerHTML='<option value="">Primero elige tu rol…</option>';sa.disabled=true;}
+  checkStart();
+}
+function checkStart(){
+  const r=document.getElementById('startRole').value, a=document.getElementById('startArea').value;
+  document.getElementById('startBtn').disabled=!(r&&a);
+}
+function start(){
+  role=document.getElementById('startRole').value; area=document.getElementById('startArea').value;
+  if(!role||!area) return;
+  syncHead(); refresh(); document.getElementById('headSel').classList.add('show'); go('s-hub');
+}
+function syncHead(){
+  document.getElementById('headRole').value=role;
+  document.getElementById('headArea').innerHTML=areaOptions(role);
+  document.getElementById('headArea').value=area;
+}
+function setRole(v){
+  role=v; starAns={};
+  if(!ROLE_AREAS[v].includes(area)) area=ROLE_AREAS[v][0];
+  syncHead(); refresh(); go('s-hub');
+}
+function setArea(v){area=v; starAns={}; refresh();}
+function refresh(){
+  document.getElementById('tagRole').textContent='Rol · '+ROLES[role].label;
+  document.getElementById('tagArea').textContent='Área · '+AREAS[area].label;
+  renderExpect(); renderStarList();
+}
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+
+function fill(t,x){return t.replace('{x}',x);}
+function fill2(t){return t.replace('{dom}',AREAS[area].dom);}
+function prompt(th){return fill2(PROMPTS[role][th]);}
+
+function renderExpect(){
+  const items=ROLES[role].expect.map((e,i)=>`<div class="expect-item"><div class="expect-dot">${i+1}</div><div><h4>${e[0]}</h4><p>${e[1]}</p></div></div>`);
+  const tip=AREAS[area].tip;
+  items.push(`<div class="expect-item area"><div class="expect-dot">+</div><div><h4>${tip[0]}<span class="area-flag">tu área</span></h4><p>${tip[1]}</p></div></div>`);
+  document.getElementById('expectList').innerHTML=items.join('');
+}
+function renderStarList(){
+  document.getElementById('starList').innerHTML=BUILDER_THEMES.map(th=>{
+    const comp=COMP_OF[th]; const q=prompt(th);
+    const a=starAns[th]; const done=a&&(a.s||a.t||a.a||a.r);
+    return `<div class="q-item" onclick="openStar('${th}')"><div><div class="q-text">${q}</div><span class="q-comp ${CCLASS[comp]}">${COMP[comp]}</span></div>${done?'<div class="q-done">✓</div>':'<div class="q-arrow">›</div>'}</div>`;
+  }).join('');
+}
+function openStar(th){
+  editTheme=th; const comp=COMP_OF[th];
+  document.getElementById('seComp').innerHTML=`<span class="q-comp ${CCLASS[comp]}">${COMP[comp]}</span>`;
+  document.getElementById('seQ').textContent=prompt(th);
+  document.getElementById('seEj').innerHTML='<strong>Ejemplo para tu área:</strong> '+fill(TMPL[role][th],AREAS[area].f[th]);
+  document.getElementById('seEj').classList.remove('show');
+  const a=starAns[th]||{s:'',t:'',a:'',r:''};
+  const fs=[['s','Situación','¿Cuándo y dónde pasó? Pon el contexto en una frase.'],['t','Tarea','¿Qué tenías que lograr o qué se esperaba de ti?'],['a','Acción','¿Qué hiciste TÚ exactamente? Esta es la parte más importante.'],['r','Resultado','¿Cómo terminó? Si puedes, di un número o un resultado concreto.']];
+  document.getElementById('seFields').innerHTML=fs.map(f=>`<div class="star-field"><div class="fl-head"><span class="letter">${f[1][0]}</span><span class="fl-name">${f[1]}</span></div><div class="fl-q">${f[2]}</div><textarea id="sf_${f[0]}" oninput="livePreview()" placeholder="Escribe aquí…">${a[f[0]]||''}</textarea></div>`).join('');
+  livePreview(); go('s-star-edit');
+}
+function toggleEj(){document.getElementById('seEj').classList.toggle('show');}
+function v(id){const e=document.getElementById(id);return e?e.value:'';}
+function livePreview(){const t=[v('sf_s'),v('sf_t'),v('sf_a'),v('sf_r')].filter(x=>x.trim()).join(' ');
+  document.getElementById('sePreview').innerHTML=t?t:'<span class="pl-empty">Llena los campos de arriba y aquí verás tu historia armada.</span>';}
+function saveStar(){starAns[editTheme]={s:v('sf_s'),t:v('sf_t'),a:v('sf_a'),r:v('sf_r')};renderStarList();go('s-star');}
+
+function printStar(){
+  const items=BUILDER_THEMES.map(th=>{const a=starAns[th];if(!a)return'';const parts=[a.s,a.t,a.a,a.r];if(!parts.some(x=>x&&x.trim()))return'';
+    const narr=parts.filter(x=>x&&x.trim()).join(' ');
+    return `<div class="pa-item"><div class="pa-q">${esc(prompt(th))}</div><div class="pa-narr">${esc(narr)}</div><div class="pa-parts">${a.s?'<b>Situación:</b> '+esc(a.s)+'<br>':''}${a.t?'<b>Tarea:</b> '+esc(a.t)+'<br>':''}${a.a?'<b>Acción:</b> '+esc(a.a)+'<br>':''}${a.r?'<b>Resultado:</b> '+esc(a.r):''}</div></div>`;
+  }).filter(Boolean).join('');
+  if(!items){alert('Primero arma al menos una respuesta para poder guardarla.');return;}
+  document.getElementById('print-area').innerHTML=`<div class="pa-head"><div class="pa-logo">EATON</div><div class="pa-title">Mis respuestas para la entrevista</div><div class="pa-role">${ROLES[role].label} · ${AREAS[area].label} · Método STAR</div></div>${items}<div class="pa-foot">Documento de práctica personal. No se almacenó ninguna información.</div>`;
+  window.print();
+}
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function startQuiz(){
+  quiz={i:0,items:[],picked:[]};
+  quiz.items=QUIZ_THEMES.map(th=>{
+    const comp=COMP_OF[th];
+    const best={t:fill(TMPL[role][th],AREAS[area].f[th]),p:5};
+    const opts=shuffle([best,...DISTR[th].map(d=>({...d}))]);
+    return {q:prompt(th),comp,opts,bestIdx:opts.findIndex(o=>o.p===5),why:WHY};
+  });
+  renderQ(); go('s-quiz');
+}
+function renderQ(){
+  const it=quiz.items[quiz.i], total=quiz.items.length, L=['A','B','C','D'];
+  document.getElementById('qProgLabel').textContent=`Pregunta ${quiz.i+1} de ${total}`;
+  document.getElementById('qProgComp').innerHTML=`<span class="q-comp ${CCLASS[it.comp]}" style="margin:0">${COMP[it.comp]}</span>`;
+  document.getElementById('qProgFill').style.width=(quiz.i/total*100)+'%';
+  document.getElementById('quizQ').textContent=it.q;
+  document.getElementById('quizOpts').innerHTML=it.opts.map((o,i)=>`<button class="opt" id="opt_${i}" onclick="pick(${i})"><span class="opt-letter">${L[i]}</span><span>${o.t}</span></button>`).join('');
+  const fb=document.getElementById('quizFb');fb.classList.remove('show');fb.innerHTML='';
+  document.getElementById('quizNext').style.display='none';
+}
+function pick(idx){
+  const it=quiz.items[quiz.i];if(quiz.picked[quiz.i]!==undefined)return;
+  quiz.picked[quiz.i]=idx;const L=['A','B','C','D'];
+  it.opts.forEach((o,i)=>{const el=document.getElementById('opt_'+i);el.classList.add('locked');el.onclick=null;
+    if(i===it.bestIdx)el.classList.add('best');else if(i===idx)el.classList.add('wrong');});
+  const pts=it.opts[idx].p, fb=document.getElementById('quizFb');
+  const head=idx===it.bestIdx?'¡Buena elección!':'La respuesta más fuerte es la opción '+L[it.bestIdx]+'.';
+  fb.innerHTML=`<span class="pts">+${pts} ${pts===1?'punto':'puntos'}</span><br><span class="miss">${MISS[pts]}</span><br><br><strong>${head}</strong> ${it.why}`;
+  fb.classList.add('show');
+  const nx=document.getElementById('quizNext');nx.style.display='inline-block';
+  nx.textContent=(quiz.i+1>=quiz.items.length)?'Ver resultado →':'Siguiente →';
+  document.getElementById('qProgFill').style.width=((quiz.i+1)/quiz.items.length*100)+'%';
+}
+function nextQ(){if(quiz.i+1>=quiz.items.length)showResults();else{quiz.i++;renderQ();}}
+
+function showResults(){
+  const earn={lid:0,apr:0,res:0},max={lid:0,apr:0,res:0};
+  quiz.items.forEach((it,i)=>{max[it.comp]+=5;earn[it.comp]+=it.opts[quiz.picked[i]].p;});
+  const order=['lid','apr','res'],pct={};
+  document.getElementById('resBars').innerHTML=order.map(c=>{
+    const p=max[c]?Math.round(earn[c]/max[c]*100):0;pct[c]=p;
+    const lv=p>=80?'fuerte':p>=50?'medio':'mejora',tx=p>=80?'Fuerte':p>=50?'Medio':'Área de mejora';
+    return `<div class="res-comp"><div class="res-comp-head"><span class="res-comp-name">${COMP[c]}</span><span class="res-comp-pct lvl-${lv}">${p}%</span></div><div class="res-bar"><div class="res-bar-fill bar-${lv}" data-w="${p}"></div></div><span class="res-tag lvl-${lv}">${tx}</span></div>`;
+  }).join('');
+  setTimeout(()=>document.querySelectorAll('.res-bar-fill').forEach(b=>b.style.width=b.dataset.w+'%'),80);
+  const FB={lid:{f:'Tienes una base fuerte en liderazgo y trabajo en equipo: sigue usando ejemplos donde tu acción ayudó al grupo.',m:'Vas bien en trabajo en equipo. Refuerza contando qué hiciste tú en concreto y cómo ayudó al grupo.',b:'Conviene reforzar el trabajo en equipo: deja claro qué hiciste tú para ayudar al grupo y cómo terminó.'},
+    apr:{f:'Demuestras muy buena actitud de aprendizaje: mantén los ejemplos donde aprendiste de un error o de algo nuevo.',m:'Tu aprendizaje se nota. Súmale qué cambiaste después de un error o una corrección.',b:'Te beneficiaría mostrar más aprendizaje: cuenta una vez que te equivocaste y qué hiciste distinto después.'},
+    res:{f:'Tienes fuerte orientación a resultados: sigue cerrando tus historias con un resultado medible.',m:'Vas bien en resultados. Intenta terminar cada historia con un número o un logro concreto.',b:'Refuerza la orientación a resultados: cierra tus respuestas diciendo cómo terminó y, si puedes, con cifras.'}};
+  let lines=order.map(c=>`<div class="fb-line">${FB[c][pct[c]>=80?'f':pct[c]>=50?'m':'b']}</div>`);
+  const sorted=[...order].sort((a,b)=>pct[b]-pct[a]);
+  if(pct[sorted[0]]!==pct[sorted[2]])lines.unshift(`<div class="fb-line"><strong>Tu punto más fuerte es ${COMP[sorted[0]].toLowerCase()}.</strong> Lo que más te conviene practicar es ${COMP[sorted[2]].toLowerCase()}.</div>`);
+  document.getElementById('resFeedback').innerHTML=lines.join('');
+  go('s-results');
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+</script>
+</body>
+</html>
